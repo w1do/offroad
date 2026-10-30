@@ -1,0 +1,19 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+public static class CloseExactForestGround
+{
+ struct Edge{public Vector3 a,b;public int count;}
+ public static string Main(){if(Application.isPlaying)throw new Exception("Stop Play first");var forest=GameObject.Find("Forest - imported dirt road environment");var root=GameObject.Find("Forest solid collision - visible surface");if(root.transform.Find("Exact visible ground edges")!=null)throw new Exception("Exact edges already created");var edgesRoot=new GameObject("Exact visible ground edges");edgesRoot.transform.SetParent(root.transform,false);int surfaces=0,walls=0;
+ foreach(var f in forest.GetComponentsInChildren<MeshFilter>()){string name=f.GetComponent<Renderer>().sharedMaterial.name;if(!(name.Contains("Terrain_Far")||name.Contains("Aerial_Grass")||name.Contains("Ground_Dirt")||name.Contains("Dirt_Road")||name.Contains("Road_Edge")||name.Contains("Grass_Close")||name.Contains("Sloped_Rock")||name.Contains("Tall_Cliff")||name.Contains("Cobblestone")||name.Contains("Mud_Pile")))continue;
+ var vertices=f.sharedMesh.vertices;var triangles=f.sharedMesh.triangles;var welded=new Dictionary<Vector3Int,int>();var ids=new int[vertices.Length];var positions=new List<Vector3>();for(int i=0;i<vertices.Length;i++){var p=f.transform.TransformPoint(vertices[i]);var key=Vector3Int.RoundToInt(p*1000);if(!welded.TryGetValue(key,out int id)){id=positions.Count;welded[key]=id;positions.Add(p);}ids[i]=id;}var edges=new Dictionary<(int,int),Edge>();for(int i=0;i<triangles.Length;i+=3)for(int j=0;j<3;j++){int a=ids[triangles[i+j]],b=ids[triangles[i+(j+1)%3]];var key=a<b?(a,b):(b,a);if(edges.TryGetValue(key,out var edge)){edge.count++;edges[key]=edge;}else edges[key]=new Edge{a=positions[a],b=positions[b],count=1};}
+ var v=new List<Vector3>();var t=new List<int>();foreach(var edge in edges.Values){if(edge.count!=1)continue;var p=(edge.a+edge.b)*.5f;var hits=Physics.RaycastAll(new Vector3(p.x,200,p.z),Vector3.down,400,~0,QueryTriggerInteraction.Ignore).Where(h=>h.collider.transform.IsChildOf(root.transform)).OrderBy(h=>h.distance).ToArray();if(hits.Length>0&&p.y-hits[0].point.y<.12f)continue;float bottom=hits.Length>0?Mathf.Min(edge.a.y,Mathf.Min(edge.b.y,hits[0].point.y))-3:Mathf.Min(edge.a.y,edge.b.y)-8;int n=v.Count;v.AddRange(new[]{edge.a,edge.b,new Vector3(edge.a.x,bottom,edge.a.z),new Vector3(edge.b.x,bottom,edge.b.z)});t.AddRange(new[]{n,n+1,n+2,n+1,n+3,n+2,n+2,n+1,n,n+2,n+3,n+1});walls++;}
+ if(t.Count>0){var mesh=new Mesh{name="Solid original edge "+f.name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(v);mesh.SetTriangles(t,0);mesh.RecalculateBounds();AssetDatabase.CreateAsset(mesh,"Assets/Game/Generated/MatchedForestCollision/Edge "+f.name+".asset");var go=new GameObject(mesh.name);go.transform.SetParent(edgesRoot.transform,false);go.AddComponent<MeshCollider>().sharedMesh=mesh;}
+ var mc=f.GetComponent<MeshCollider>();if(mc==null)mc=f.gameObject.AddComponent<MeshCollider>();mc.sharedMesh=f.sharedMesh;mc.enabled=true;var patch=f.GetComponent<ForestGroundPatch>();if(patch==null)patch=f.gameObject.AddComponent<ForestGroundPatch>();patch.fallbackCover=name.Contains("Grass")||name.Contains("Terrain_Far")?1:0;PrefabUtility.RecordPrefabInstancePropertyModifications(mc);EditorUtility.SetDirty(patch);surfaces++;
+ }
+ AssetDatabase.SaveAssets();EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());return "Exact original ground skin enabled on "+surfaces+" source meshes with "+walls+" exposed edge closures; broad matched collision remains underneath for closed terrain boundaries. No rendered vertex changes.";
+ }
+}

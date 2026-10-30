@@ -1,0 +1,3 @@
+using UnityEngine;
+public static class InspectActualClimbs {
+public static string Main(){var r=Object.FindAnyObjectByType<AuthoredForestRoute>();r.Prepare();string s="";for(int a=0;a<r.arms.Length;a++){float best=0;int bb=0;float dd=0;for(int b=0;b<18;b++)for(float d=8;d<r.arms[a].descriptions[r.arms[a].records[b].module].length-18;d+=2){var delta=r.RoutePoint(a,b,d+12)-r.RoutePoint(a,b,d);float grade=Mathf.Atan2(delta.y,new Vector2(delta.x,delta.z).magnitude)*Mathf.Rad2Deg;if(grade>best){best=grade;bb=b;dd=d;}}s+="arm="+a+" best="+best+" block="+bb+" dist="+dd+" p="+r.RoutePoint(a,bb,dd)+"\n";}return s;}}

@@ -1,0 +1,16 @@
+using System;
+using System.Linq;
+using UnityEngine;
+using UnityEditor;
+public static class ValidateSharedMudDigging
+{
+ public static string Main(){if(!Application.isPlaying)throw new Exception("Requires Play");var v=UnityEngine.Object.FindAnyObjectByType<VehiclePhysics>();var rb=v.GetComponent<Rigidbody>();var p=rb.position;var q=rb.rotation;var constraints=rb.constraints;var mode=Physics.simulationMode;bool paused=EditorApplication.isPaused,automatic=v.automaticSimulation,external=v.externalControl;var soil=UnityEngine.Object.FindObjectsByType<SoftGroundRuts>().Where(s=>s.GetComponent<MeshCollider>().enabled).OrderBy(s=>s.GetComponent<Renderer>().bounds.center.x).Last();var collider=soil.GetComponent<MeshCollider>();float depth=soil.DugDepth;
+ try{Physics.simulationMode=SimulationMode.Script;EditorApplication.isPaused=true;v.externalControl=true;v.automaticSimulation=false;Vector3 target=new Vector3(-40.62f,0,44.16f);RaycastHit chosen=default;float nearest=float.MaxValue;for(float z=-2;z<=2;z+=.25f)for(float x=-2;x<=2;x+=.25f)if(collider.Raycast(new Ray(new Vector3(target.x+x,100,target.z+z),Vector3.down),out var hit,200)){float d=x*x+z*z;if(d<nearest){nearest=d;chosen=hit;}}if(nearest==float.MaxValue)throw new Exception("No scanned mud surface near original crossing");rb.position=chosen.point+Vector3.up*.65f;rb.rotation=Quaternion.LookRotation(Vector3.left);v.transform.SetPositionAndRotation(rb.position,rb.rotation);rb.linearVelocity=Vector3.zero;rb.angularVelocity=Vector3.zero;rb.constraints=RigidbodyConstraints.FreezePositionX|RigidbodyConstraints.FreezePositionZ|RigidbodyConstraints.FreezeRotation;v.ResetState();v.SetTransmission(false,true);v.SetInput(new VehicleControlInput{brake=1});Physics.SyncTransforms();for(int i=0;i<200;i++)Step(v);v.SetInput(new VehicleControlInput{throttle=1});float spin=0;int mud=0;int before=v.GetComponent<VehicleWheelEffects>().EmittedParticles;
+ for(int i=0;i<900;i++){Step(v);spin=Mathf.Max(spin,v.WheelspinSpeed);mud=Math.Max(mud,v.MudContacts);}soil.Commit();int particles=v.GetComponent<VehicleWheelEffects>().EmittedParticles-before;var audio=v.GetComponent<VehicleAudio>();audio.UpdateAudio(.1f);
+ if(spin<2||mud==0||soil.DugDepth-depth<.002f||soil.DugDepth>soil.maximumDepth+.001f||particles<5||Mathf.Abs(audio.EngineRpm-v.EngineRpm)>1)throw new Exception("Wheel/soil/audio failed: spin="+spin+" mud="+mud+" depth="+soil.DugDepth+" particles="+particles);
+ return "PASS local mud excavation on provided model: spin="+spin.ToString("F1")+"m/s, soil contacts="+mud+", rut="+soil.DugDepth.ToString("F3")+"m (cap "+soil.maximumDepth+"m), emitted="+particles+", engine audio RPM="+audio.EngineRpm.ToString("F0")+" matches physics; diagnostic constraints removed.";
+ }finally{rb.constraints=constraints;rb.position=p;rb.rotation=q;v.transform.SetPositionAndRotation(p,q);rb.linearVelocity=Vector3.zero;rb.angularVelocity=Vector3.zero;v.SetInput(default);v.SetTransmission(false,false);v.ResetState();v.automaticSimulation=automatic;v.externalControl=external;Physics.simulationMode=mode;EditorApplication.isPaused=paused;}
+ }
+ static void Step(VehiclePhysics v){v.Simulate(Time.fixedDeltaTime);Physics.Simulate(Time.fixedDeltaTime);v.SendMessage("LateUpdate");}
+}
+

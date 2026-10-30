@@ -1,0 +1,5 @@
+using System.Linq;
+using UnityEngine;
+using UnityEditor;
+public static class InspectLiveWheelspin {
+public static string Main(){var v=Object.FindAnyObjectByType<VehiclePhysics>();string s="car="+v.name+" profile="+AssetDatabase.GetAssetPath(v.profile)+" grip="+v.profile.dirtLongitudinal+" chains="+v.GetComponent<TruckChains>().Installed+" low="+v.LowRange+" rpm="+v.EngineRpm+" speed="+v.SpeedKmh+" components="+string.Join(",",v.GetComponents<MonoBehaviour>().Select(x=>x.GetType().Name+":"+x.enabled));for(int a=0;a<v.axles.Length;a++)for(int j=0;j<2;j++){var w=j==0?v.axles[a].left:v.axles[a].right;var t=j==0?v.axles[a].leftVisual:v.axles[a].rightVisual;s+="\naxle="+a+" wheel="+w.name+" rpm="+w.rpm+" torque="+w.motorTorque+" mu="+w.forwardFriction.stiffness+" visual="+(t?t.name:"NULL")+" renderers="+(t?string.Join(";",t.GetComponentsInChildren<MeshRenderer>().Select(r=>r.name+"="+r.bounds)):"");if(w.GetGroundHit(out var h))s+=" contact="+h.collider.name+" parent="+h.collider.transform.parent+" slip="+h.forwardSlip+" N="+h.force+" normal="+h.normal+" surface="+h.collider.GetComponent<ForestDrivingSurface>();}return s;}}
