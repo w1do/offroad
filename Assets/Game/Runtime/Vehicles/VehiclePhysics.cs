@@ -155,7 +155,17 @@ public sealed class VehiclePhysics : MonoBehaviour
             if(axle.tire!=null){longGrip[i]*=axle.tire.longitudinalMultiplier*(softSoil?axle.tire.softGroundMultiplier:1);lateralGrip[i]*=axle.tire.lateralMultiplier;resistance+=(axle.tire.rollingResistance-profile.rollingResistance)/Wheels.Length;}
             var deformable=hits[i].collider.GetComponent<SoftGroundRuts>();var soilModel=deformable==null||deformable.profile==null?null:deformable.profile.soil;
             if(deformable!=null&&Mathf.Max(Mathf.Abs(contactSpeed),spin)>.05f)SoftGroundRuts.RecordTread(hits[i].point,contactForward,axle.tire==null?axle.tyreWidthMetres:axle.tire.widthMetres,.22f,treadTravel[i],axle.tire==null?.16f:axle.tire.treadRepeatMetres,soilModel==null?.5f:soilModel.moisture,gameObject.scene);
-            if(soilModel!=null){longGrip[i]*=soilModel.longitudinalGrip/.18f;lateralGrip[i]*=soilModel.lateralGrip/.38f;ApplySoilResistance(hits[i],soilModel.rollingResistance*Mathf.Clamp01(deformable.DepthAt(hits[i].point)/Mathf.Max(.01f,soilModel.rutDepthLimitMetres)),dt);}
+            if(soilModel!=null)
+            {
+                longGrip[i]*=soilModel.longitudinalGrip/.18f;lateralGrip[i]*=soilModel.lateralGrip/.38f;
+                float depth=deformable.DepthAt(hits[i].point);
+                float soilResistance=soilModel.rollingResistance*Mathf.Clamp01(depth/Mathf.Max(.01f,soilModel.rutDepthLimitMetres));
+                // A pre-existing deep bed displaces soil even before fresh wheel ruts form.
+                // Select one resistance envelope, rather than stacking two soil forces.
+                if(hits[i].collider.TryGetComponent<MudRoadSection>(out var fullWidth)&&fullWidth.profile!=null&&fullWidth.profile.fullWidthFurrows)
+                    soilResistance=Mathf.Max(soilResistance,fullWidth.ResistanceAt(hits[i].point,depth));
+                ApplySoilResistance(hits[i],soilResistance,dt);
+            }
             float combined=Mathf.SmoothStep(0,1,Mathf.InverseLerp(.15f,1.4f,slip))*Pedal;
             lateralGrip[i]*=axle.lateralMultiplier*Mathf.Lerp(1,driveShare>0?axle.wheelspinLateralMultiplier:profile.undrivenLateralMultiplier,combined);
             if(effects!=null&&driveShare>0&&throwsSoil)effects.Spray(i,hits[i].point,hits[i].normal,contactForward,signedSpin,Pedal,dt,softSoil);
