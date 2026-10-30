@@ -1,0 +1,146 @@
+[
+  {
+    "coefficient": 0.32,
+    "offset": -2.2,
+    "speed": 7.0,
+    "travel": 37.627243,
+    "depth": 0.0175851677,
+    "description": "entry=7m/s offset=-2,2 approach=True travel=37,63m depth=0,018m slip=9,5 contacts=4"
+  },
+  {
+    "coefficient": 0.32,
+    "offset": -2.2,
+    "speed": 0.0,
+    "travel": 22.1557026,
+    "depth": 0.02066529,
+    "description": "entry=0m/s offset=-2,2 approach=True travel=22,16m depth=0,021m slip=13,1 contacts=4"
+  },
+  {
+    "coefficient": 0.32,
+    "offset": 0.0,
+    "speed": 7.0,
+    "travel": 35.65809,
+    "depth": 0.018698452,
+    "description": "entry=7m/s offset=0 approach=True travel=35,66m depth=0,019m slip=10,3 contacts=4"
+  },
+  {
+    "coefficient": 0.32,
+    "offset": 0.0,
+    "speed": 0.0,
+    "travel": 16.65419,
+    "depth": 0.0267856233,
+    "description": "entry=0m/s offset=0 approach=True travel=16,65m depth=0,027m slip=12,7 contacts=4"
+  },
+  {
+    "coefficient": 0.32,
+    "offset": 2.2,
+    "speed": 7.0,
+    "travel": 18.4966488,
+    "depth": 0.0350108,
+    "description": "entry=7m/s offset=2,2 approach=True travel=18,50m depth=0,035m slip=11,2 contacts=4"
+  },
+  {
+    "coefficient": 0.32,
+    "offset": 2.2,
+    "speed": 0.0,
+    "travel": 6.518337,
+    "depth": 0.1365777,
+    "description": "entry=0m/s offset=2,2 approach=True travel=6,52m depth=0,137m slip=12,9 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": -2.2,
+    "speed": 7.0,
+    "travel": 35.93611,
+    "depth": 0.0191939678,
+    "description": "entry=7m/s offset=-2,2 approach=True travel=35,94m depth=0,019m slip=10,8 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": -2.2,
+    "speed": 0.0,
+    "travel": 17.0918827,
+    "depth": 0.0270061623,
+    "description": "entry=0m/s offset=-2,2 approach=True travel=17,09m depth=0,027m slip=13,1 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": 0.0,
+    "speed": 7.0,
+    "travel": 34.63076,
+    "depth": 0.0233868957,
+    "description": "entry=7m/s offset=0 approach=True travel=34,63m depth=0,023m slip=10,3 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": 0.0,
+    "speed": 0.0,
+    "travel": 9.468844,
+    "depth": 0.0731637254,
+    "description": "entry=0m/s offset=0 approach=True travel=9,47m depth=0,073m slip=12,6 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": 2.2,
+    "speed": 7.0,
+    "travel": 9.86283,
+    "depth": 0.15032284,
+    "description": "entry=7m/s offset=2,2 approach=True travel=9,86m depth=0,150m slip=11,5 contacts=4"
+  },
+  {
+    "coefficient": 0.38,
+    "offset": 2.2,
+    "speed": 0.0,
+    "travel": 6.36003447,
+    "depth": 0.09845653,
+    "description": "entry=0m/s offset=2,2 approach=True travel=6,36m depth=0,098m slip=12,2 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": -2.2,
+    "speed": 7.0,
+    "travel": 32.0887566,
+    "depth": 0.0266872365,
+    "description": "entry=7m/s offset=-2,2 approach=True travel=32,09m depth=0,027m slip=10,7 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": -2.2,
+    "speed": 0.0,
+    "travel": 16.88558,
+    "depth": 0.02578289,
+    "description": "entry=0m/s offset=-2,2 approach=True travel=16,89m depth=0,026m slip=13,1 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": 0.0,
+    "speed": 7.0,
+    "travel": 25.8306713,
+    "depth": 0.03399022,
+    "description": "entry=7m/s offset=0 approach=True travel=25,83m depth=0,034m slip=11,9 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": 0.0,
+    "speed": 0.0,
+    "travel": 8.312187,
+    "depth": 0.11575374,
+    "description": "entry=0m/s offset=0 approach=True travel=8,31m depth=0,116m slip=12,8 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": 2.2,
+    "speed": 7.0,
+    "travel": 8.429439,
+    "depth": 0.179219037,
+    "description": "entry=7m/s offset=2,2 approach=True travel=8,43m depth=0,179m slip=11,0 contacts=4"
+  },
+  {
+    "coefficient": 0.44,
+    "offset": 2.2,
+    "speed": 0.0,
+    "travel": 5.874664,
+    "depth": 0.108646147,
+    "description": "entry=0m/s offset=2,2 approach=True travel=5,87m depth=0,109m slip=12,5 contacts=4"
+  }
+]

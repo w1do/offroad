@@ -1,0 +1,9 @@
+Farm Furrows — Poly Haven
+https://polyhaven.com/a/farm_furrows
+Author: Amal Kumar. License: CC0 (as stated on the asset page).
+Downloaded 2026-10-30 using https://api.polyhaven.com/files/farm_furrows
+Maps: 2K diffuse JPG, OpenGL normal JPG, roughness JPG, displacement PNG.
+Original files verified against the API's MD5 hashes.
+The height map is baked into derived local road meshes; runtime wheel ruts
+are simulated by the project's shared SoftGroundRuts, not by this texture.
+Original forest FBX and imported road scans are retained.
