@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b009e321eb4d7ec4a8896da0cac07319, type: 3}
+  m_Name: Pajero equipment
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleEquipmentProfile
+  driveKey: 22
+  chainsKey: 41
+  winchKey: 42
+  hornKey: 16
+  pressureKey: 43
+  pressureAdjustmentAvailable: 1
+  roadPressureBar: 2.2
+  softGroundPressureBar: 1.2
+  minimumTyrePressureBar: 0.8
+  maximumTyrePressureBar: 3
+  maximumPressureAdjustmentSpeedKmh: 0.5
+  deflationBarPerSecond: 0.08
+  inflationBarPerSecond: 0.04
+  lowPressureSoftGripMultiplier: 1.28
+  lowPressureSoilLoadMultiplier: 0.58
+  lowPressureRollingResistance: 0.012
+  switchableDrive: 1
+  defaultFourWheelDrive: 0
+  maximumDriveSwitchSpeedKmh: 35
+  chainsAvailable: 1
+  chainsOnAllWheels: 1
+  chainMaterial: {fileID: 0}
+  chainWidthMetres: 0.31
+  chainLinkCount: 16
+  installationSeconds: 4
+  maximumInstallSpeedKmh: 0.3
+  chainWearPerSlipMetre: 0.00045
+  chainHeatingCPerSlipMetre: 0.65
+  ambientTemperatureC: -10
+  chainCoolingCPerSecond: 1.5
+  chainWarningTemperatureC: 85
+  chainBreakTemperatureC: 130
+  hotChainWearMultiplier: 4
+  winchAvailable: 1
+  winchMount: {x: 0, y: 0.65, z: 2.1}
+  maximumCableMetres: 28
+  minimumAnchorMetres: 2
+  anchorSearchDegrees: 75
+  maximumWinchAttachSpeedKmh: 5
+  reelMetresPerSecond: 0.65
+  maximumPullNewtons: 28000
+  cableSpringNewtonsPerMetre: 18000
+  cableDamperNsPerMetre: 2500
+  cableWearPerSecondAtFullLoad: 0.018
+  maximumContinuousPullSeconds: 40
+  winchCooldownPerSecond: 0.65
