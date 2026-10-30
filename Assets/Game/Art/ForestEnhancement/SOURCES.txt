@@ -1,0 +1,15 @@
+Downloaded source textures — Poly Haven, CC0 1.0.
+License: https://polyhaven.com/license
+
+Gravel Floor 04 — Charlotte Baglioni
+https://polyhaven.com/a/gravel_floor_04
+Forest Ground 04 — Rob Tuytel; minor adjustment by Rico Cilliers
+https://polyhaven.com/a/forest_ground_04
+River Small Rocks — Rob Tuytel; minor adjustment by Rico Cilliers
+https://polyhaven.com/a/river_small_rocks
+
+Imported 2K JPEG diffuse, OpenGL normal and roughness maps. Source download
+metadata is retained in each asset folder's source-files.json.
+No external tree model or executable package was installed. Existing supplied
+forest meshes are reused, with separate generated copies for shader wind
+anchors and carved river-bank geometry. Original FBX remains unchanged.

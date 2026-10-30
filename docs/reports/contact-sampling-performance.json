@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-30T12:11:15.7724104Z",
+  "position": "(-156.578, 41.771, 23.045)",
+  "processor": "AMD Ryzen 9 9950X3D 16-Core Processor ",
+  "wheels": 4,
+  "iterations": 80,
+  "baselineMeanMs": 0.02479749999999999,
+  "previousGridMeanMs": 1.9604975,
+  "previousGridP95Ms": 1.9788000000000001,
+  "arcMeanMs": 1.0579475000000003,
+  "arcP95Ms": 1.073,
+  "samplingSpeedup": 1.8531141668182962,
+  "scope": "Contact sampling only, current main scene position; not frame time or full-route performance"
+}

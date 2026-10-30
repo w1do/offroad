@@ -23,6 +23,7 @@ public sealed class VehicleAxleSettings
 
     public float wheelRadius=.39731f,wheelMass=30,suspensionTravel=.22f;
     public float tyreWidthMetres=.285f;
+    public TireProfile tire;
 
     public float wheelDampingRate=.02f;
 
@@ -51,6 +52,7 @@ public sealed class VehiclePhysicsProfile : ScriptableObject
     public string displayName="Vehicle";
     public VehicleEquipmentProfile equipment;
     public VehicleWheelEffectsProfile wheelEffects;
+    public WheelRutContactSettings rutContact = new WheelRutContactSettings();
 
     [Header("Chassis / SI units")]
 

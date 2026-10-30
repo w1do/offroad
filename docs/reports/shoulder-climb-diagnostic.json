@@ -1,0 +1,43 @@
+{
+  "central": {
+    "support": false,
+    "escape": false,
+    "stationaryRightMinusLeftHubMetres": -7.06315041E-06,
+    "lateralProgressMetres": 0.0,
+    "finalPosition": "(-0.090, 0.121, 0.000)",
+    "minimumHubX": -0.80427295,
+    "minimumHubHeight": 0.396816015,
+    "shoulderFrames": 0,
+    "peakGainMetres": 0.0,
+    "peakSpeedMps": 0.0,
+    "maximumVisibleSurfaceGapMetres": 0.0
+  },
+  "shoulder": {
+    "support": true,
+    "escape": false,
+    "stationaryRightMinusLeftHubMetres": 0.0162576139,
+    "lateralProgressMetres": 0.0,
+    "finalPosition": "(-0.071, 0.110, 0.000)",
+    "minimumHubX": -0.7839214,
+    "minimumHubHeight": 0.39671284,
+    "shoulderFrames": 0,
+    "peakGainMetres": 0.0,
+    "peakSpeedMps": 0.0,
+    "maximumVisibleSurfaceGapMetres": 0.0
+  },
+  "escape": {
+    "support": true,
+    "escape": true,
+    "stationaryRightMinusLeftHubMetres": 0.0162576139,
+    "lateralProgressMetres": 2.507109,
+    "finalPosition": "(2.436, 0.333, 7.369)",
+    "minimumHubX": 1.26562786,
+    "minimumHubHeight": 0.616754651,
+    "shoulderFrames": 633,
+    "peakGainMetres": 0.0647680759,
+    "peakSpeedMps": 6.75155354,
+    "maximumVisibleSurfaceGapMetres": 5.21540642E-08
+  },
+  "liftDifferenceMetres": 0.016264677,
+  "progress": 2.507109
+}

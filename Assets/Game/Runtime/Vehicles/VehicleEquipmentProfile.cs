@@ -6,6 +6,11 @@ public sealed class VehicleEquipmentProfile : ScriptableObject
 {
     [Header("Controls")]
     public Key driveKey=Key.H,chainsKey=Key.Digit1,winchKey=Key.Digit2,hornKey=Key.B,pressureKey=Key.Digit3;
+    public Key differentialLockKey=Key.J;
+    public Key diagnosticsKey=Key.F3;
+    public bool differentialLockAvailable=true,defaultDifferentialLocked;
+    public float maximumDifferentialSwitchSpeedKmh=5;
+    public float lockedAxleTorqueNm=1800,lockedAxleCoupling=45;
     [Header("Tyre pressure / bar, prototype calibration")]
     public bool pressureAdjustmentAvailable=true;
     public float roadPressureBar=2.2f,softGroundPressureBar=1.2f;

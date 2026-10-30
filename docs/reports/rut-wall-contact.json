@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "flatForceNewtons": 0.0,
+  "wallForceNewtons": 4200.0,
+  "narrowForceNewtons": 881.14386,
+  "softTyreForceNewtons": 2940.0,
+  "freshHeightErrorMetres": -0.13,
+  "heightErrorAfterPriorityCook": 0.0,
+  "wallNormal": "(-0.79, 0.61, 0.00)",
+  "rotatedHeightErrorMetres": 0.0002200231,
+  "originShiftHeightErrorMetres": 0.0,
+  "contacts": 27,
+  "maximumX": 0.4736328,
+  "maximumSpeed": 2.0
+}

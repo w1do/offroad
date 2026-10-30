@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ae32af853e8d84c9e3ae3967764b86, type: 3}
+  m_Name: Dry road deformation
+  m_EditorClassIdentifier: Assembly-CSharp::SoftGroundProfile
+  soil: {fileID: 11400000, guid: 9665c29ae83054546abc52e9ccdcaa1b, type: 2}
+  displacedSoilFraction: 0.35
+  maximumBermHeightMetres: 0.018
+  maximumColliderCommitsPerStep: 2
+  wheelContactHeightToleranceMetres: 0.006
+  maximumDepthMetres: 0.075
+  diggingMetresPerSecond: 0.015
+  rollingCompactionMetresPerSecond: 0.03
+  settlementDepthMetres: 0.025
+  nominalWheelLoadNewtons: 5000
+  fullDigSlipMetresPerSecond: 9
+  minimumDigSlipMetresPerSecond: 0.6
+  footprintLengthMetres: 0.6
+  edgeTaperMetres: 0.6
+  collisionUpdateSeconds: 0.16

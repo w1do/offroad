@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b552d66c86bf1f943a0ca4490acb2077, type: 3}
+  m_Name: Pajero audio
+  m_EditorClassIdentifier: Assembly-CSharp::TruckAudioProfile
+  idle: {fileID: 8300000, guid: 808795aa1e724604e976f8c8928dcd76, type: 3}
+  load: {fileID: 8300000, guid: 257d7f3e045da52489ceeccc6b34aa16, type: 3}
+  road: {fileID: 8300000, guid: 85bdf2b5c0c6af14cbc453bb169e0541, type: 3}
+  slip: {fileID: 8300000, guid: b2b27a2c3db44e34b9006ebc07c8be2d, type: 3}
+  chains: {fileID: 8300000, guid: b4c7d0f290563d44b916fd8441fbc1ed, type: 3}
+  brakeAir: {fileID: 0}
+  gear: {fileID: 8300000, guid: e7b9a1f2ec29e6640a5eb239d43ce400, type: 3}
+  chainFitting: {fileID: 8300000, guid: 1629c582c601aa4488e9cc8fec9705b3, type: 3}
+  horn: {fileID: 8300000, guid: 313d59fbdd578854eb99af4707f2087d, type: 3}
+  masterVolume: 0.8
+  engineVolume: 0.34
+  roadVolume: 0.14
+  slipVolume: 0.18
+  chainVolume: 0.15
+  hornVolume: 0.28
+  effectVolume: 0.3
+  idleRpm: 850
+  maximumRpm: 6800
+  engineResponse: 3.5
+  wheelToEngineRatio: 9
+  idleReferenceRpm: 850
+  loadReferenceRpm: 1600
+  maximumEnginePitch: 4.5
+  minDistance: 6
+  maxDistance: 90

@@ -1,0 +1,528 @@
+{
+  "utc": "2026-10-30T08:38:58.5261617Z",
+  "unity": "6000.6.7f1",
+  "scene": "Assets/MountainDrive/MountainPass.unity",
+  "playing": false,
+  "renderPipeline": "ForestQuality",
+  "fixedStepSeconds": 0.0199999921,
+  "terrains": 0,
+  "rigidbodies": 1,
+  "wheelColliders": 4,
+  "meshColliders": 680,
+  "particles": 0,
+  "vehicles": [
+    {
+      "name": "Mitsubishi Pajero Sport - supplied 2005 archive",
+      "profile": "Assets/Game/Generated/AuthoredForestPajero/Pajero Sport 2005 physics.asset",
+      "equipment": "Assets/Game/Generated/AuthoredForestPajero/Pajero equipment.asset",
+      "axles": 2
+    }
+  ],
+  "soil": [
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(307.19, 23.10, 16.52)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-271.10, 56.17, 89.86)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(142.41, 4.70, -28.40)",
+      "vertices": 2331
+    },
+    {
+      "name": "Background_Tree_Atlas.017",
+      "profile": "",
+      "position": "(-16.09, 31.70, 1.66)",
+      "vertices": 11074
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(350.67, 27.70, 30.02)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-314.09, 60.77, 104.85)",
+      "vertices": 2331
+    },
+    {
+      "name": "forest-puddle",
+      "profile": "",
+      "position": "(-72.29, 40.14, 41.50)",
+      "vertices": 0
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(261.65, 18.50, 19.55)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-156.81, 42.37, 22.25)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-200.44, 46.97, 32.86)",
+      "vertices": 2331
+    },
+    {
+      "name": "forest-puddle",
+      "profile": "",
+      "position": "(-40.62, 43.37, 44.16)",
+      "vertices": 0
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/NaturalMud/Firm gravel soil.asset",
+      "position": "(216.49, 13.90, 20.36)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/NaturalMud/Firm gravel soil.asset",
+      "position": "(-236.29, 51.57, 60.36)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/NaturalMud/Firm gravel soil.asset",
+      "position": "(-111.89, 37.77, 28.05)",
+      "vertices": 2331
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-72.29, 40.28, 41.50)",
+      "vertices": 3198
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/DeformableMud/Forest soft soil.asset",
+      "position": "(-40.62, 43.15, 44.16)",
+      "vertices": 3198
+    },
+    {
+      "name": "Natural scanned mud",
+      "profile": "Assets/Game/Generated/NaturalMud/Firm gravel soil.asset",
+      "position": "(175.09, 9.30, 2.96)",
+      "vertices": 2331
+    }
+  ],
+  "waterMeshes": [
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-40.62, 43.21, 43.97), Extents: (2.66, 0.05, 0.98)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-199.00, 46.66, 31.96), Extents: (1.10, 0.06, 1.35)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (349.09, 27.35, 29.35), Extents: (0.94, 0.08, 1.37)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (141.08, 4.38, -29.47), Extents: (1.18, 0.07, 1.30)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (305.48, 22.75, 16.58), Extents: (0.53, 0.08, 1.30)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-269.76, 55.85, 88.79), Extents: (1.17, 0.07, 1.30)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-155.12, 42.06, 22.04), Extents: (0.65, 0.06, 1.33)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (259.98, 18.18, 19.89), Extents: (0.73, 0.07, 1.35)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-74.50, 39.66, 41.50), Extents: (0.45, 0.07, 1.17)",
+      "materials": [
+        "Muddy water"
+      ]
+    },
+    {
+      "name": "Water in low ruts",
+      "bounds": "Center: (-312.42, 60.45, 104.44), Extents: (0.77, 0.07, 1.36)",
+      "materials": [
+        "Muddy water"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Authored module Forest Aerial_Grass",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 9",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 15",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Authored module Forest Ground_Dirt",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Wood_Log",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road tire-tracks-in-mud 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Fallen_Generic_Leaves",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Grass_Vegetation_Dry",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Terrain_Far",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Trunk_Birch",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 14",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 16",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Feather main Forest Fallen_Maple_Leaves",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Broken_Rocks",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Background_Tree_Atlas",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Tall_Cliff",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Trunk_Oak",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Sloped_Rock",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Feather main Authored module Forest Fallen_Maple_Leaves",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Grass_Vegetation_Green",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Forest_Bush",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 10",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 7",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 5",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Authored module Forest Mud_Pile",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 12",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 8",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Muddy water",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Authored module Forest Road_Edge_Gravel_Dusty",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Cobblestone",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 13",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Pajero material 4",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Authored module Forest Wood_Fence",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Aerial_Grass",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Puddle_Streaks",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Trunk_Oak",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Grass_Close",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Feather main Forest Rock_Decal",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Feather main Authored module Forest Rock_Decal",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Metal_Fence",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 11",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road tire-tracks-in-mud 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 2",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Tall_Cliff",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road_Trails",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road gravel-road-2 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Fallen_Generic_Leaves",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Mud material2",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Mud material0",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Mud material1",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Metal_Fence",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Dirt_Road muddy-road-with-tire-tracks 2,6 5",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 6",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Dirt_Road_Bare",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Road_Edge_Gravel_Dusty",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Cobblestone",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Terrain_Far",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Background_Tree_Atlas",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road traktore-markak 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road gravel-road-2 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Trunk_Birch",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Grass_Vegetation_Green",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Authored module Forest Dirt_Road muddy-road-with-tire-tracks 2,3 4",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Dirt_Road tire-tracks-in-mud 2,6 5",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 3",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Sloped_Rock",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Dirt_Road",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Grass_Close",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Broken_Rocks",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 1",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Dirt_Road_Trails",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Wood_Fence",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 17",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Grass_Vegetation_Dry",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Forest_Bush",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Ground_Dirt",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Puddle_Streaks",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Forest Mud_Pile",
+      "shader": "Game/Living Forest"
+    },
+    {
+      "name": "Pajero material 0",
+      "shader": "Universal Render Pipeline/Lit"
+    },
+    {
+      "name": "Forest Wood_Log",
+      "shader": "Game/Living Forest"
+    }
+  ],
+  "hardware": {
+    "processorType": "AMD Ryzen 9 9950X3D 16-Core Processor ",
+    "graphicsDeviceName": "NVIDIA GeForce RTX 5080",
+    "systemMemorySize": 95859
+  }
+}

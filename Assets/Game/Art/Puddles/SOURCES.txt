@@ -1,0 +1,26 @@
+Brown Mud 03 — Rob Tuytel / Poly Haven
+https://polyhaven.com/a/brown_mud_03
+License: CC0 1.0, https://polyhaven.com/license
+https://creativecommons.org/publicdomain/zero/1.0/
+Retrieved 2026-10-30 via public Poly Haven files API.
+2K JPG maps: diffuse, OpenGL normal, roughness.
+Diffuse and normal used for the existing blended mud sections; diffuse also
+used for the shallow puddle bottom. Roughness included as the source PBR map.
+Original geometry, road alpha masks, and forest textures remain intact.
+
+Dry Mud Field 001 — photography Rob Tuytel, processing Rico Cilliers / Poly Haven
+https://polyhaven.com/a/dry_mud_field_001
+CC0 1.0. Retrieved 2026-10-30 via public Poly Haven files API.
+2K JPG diffuse, OpenGL normal and roughness maps used for the main road.
+Source tile dimension: approximately 3 metres.
+
+Brown Mud Leaves 01 — Rob Tuytel / Poly Haven
+https://polyhaven.com/a/brown_mud_leaves_01
+CC0 1.0. Retrieved 2026-10-30 via public Poly Haven files API.
+2K JPG diffuse, OpenGL normal and roughness mixed with Brown Mud 03 in wet patches.
+Source tile dimension: approximately 1.3 metres.
+
+Water ripple normal: existing Puddle_Streaks_Normal.png from the user-selected
+forest environment. This is not a newly acquired CC0 asset.
+Splash mask/material: reused existing wheel-effects resource. Its original
+sources and licenses remain in Assets/Game/VFX/Mud/SOURCES.txt.

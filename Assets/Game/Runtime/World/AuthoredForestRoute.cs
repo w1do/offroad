@@ -92,6 +92,7 @@ public sealed class AuthoredForestRoute : MonoBehaviour
         foreach(var root in gameObject.scene.GetRootGameObjects())root.transform.position-=delta;
         for(int i=0;i<bodies.Length;i++)bodies[i].position=positions[i];foreach(var p in UnityEngine.Object.FindObjectsByType<VehiclePhysics>())p.ShiftOrigin(delta);
         foreach(var soil in UnityEngine.Object.FindObjectsByType<SoftGroundRuts>())soil.ShiftOrigin(delta);
+        foreach(var ripple in UnityEngine.Object.FindObjectsByType<WaterRippleRenderer>())ripple.ShiftOrigin(delta);
         foreach(var particles in UnityEngine.Object.FindObjectsByType<ParticleSystem>())if(particles.main.simulationSpace==ParticleSystemSimulationSpace.World){var p=new ParticleSystem.Particle[particles.particleCount];int n=particles.GetParticles(p);for(int i=0;i<n;i++)p[i].position-=delta;particles.SetParticles(p,n);}
         OriginX+=delta.x;OriginZ+=delta.z;OriginShifts++;Shader.SetGlobalVector("_ForestOriginOffset",new Vector4((float)OriginX,0,(float)OriginZ,0));Physics.SyncTransforms();
     }

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "open": {
+    "locked": false,
+    "seconds": 5,
+    "travelMetres": 0.04415653,
+    "peakSpeedMps": 0.112353325,
+    "peakAxleSplitRpm": 351.628326,
+    "finalEngineRpm": 5919.529,
+    "finalPosition": "(0.000, 0.121, 0.044)"
+  },
+  "locked": {
+    "locked": true,
+    "seconds": 5,
+    "travelMetres": 12.52672,
+    "peakSpeedMps": 5.25140667,
+    "peakAxleSplitRpm": 156.299728,
+    "finalEngineRpm": 6121.55371,
+    "finalPosition": "(0.140, 0.120, 12.527)"
+  }
+}

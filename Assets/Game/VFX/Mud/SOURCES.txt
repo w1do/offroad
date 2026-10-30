@@ -1,0 +1,16 @@
+Mud VFX: free assets only.
+
+Kenney Splat Pack 1.0, masks splat02, splat19, splat26.
+https://kenney.nl/assets/splat-pack
+https://kenney-assets.itch.io/splat-pack
+CC0; original license included as Kenney-License.txt. No attribution required.
+The masks are starting shapes, not a purchased realistic mud VFX package.
+
+Earth clod meshes and wet URP shader: authored for this project.
+Clod photographic colour/normal: user-supplied Models/Road/tire-tracks-in-mud.zip.
+Tire tracks in mud, SPLEEN VISION, CC Attribution:
+https://sketchfab.com/3d-models/tire-tracks-in-mud-ca396ba4973d48a0bad937459be66426
+Retain author credit for distribution. Original source maps remain in RoadScans.
+
+Picster VFX textures were inspected but excluded: their light streak shapes
+did not fit wet mud. No Godot project or additional Unity package is required.

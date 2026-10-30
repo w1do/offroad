@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ae32af853e8d84c9e3ae3967764b86, type: 3}
   m_Name: Firm gravel soil
   m_EditorClassIdentifier: Assembly-CSharp::SoftGroundProfile
+  soil: {fileID: 11400000, guid: 32a6771db54e9924fbd10334d45a398e, type: 2}
+  displacedSoilFraction: 0.35
+  maximumBermHeightMetres: 0.08
+  maximumColliderCommitsPerStep: 2
+  wheelContactHeightToleranceMetres: 0.006
   maximumDepthMetres: 0.018
   diggingMetresPerSecond: 0.001
   rollingCompactionMetresPerSecond: 0.001

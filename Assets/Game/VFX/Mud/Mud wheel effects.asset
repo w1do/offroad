@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426b420de77838c4e9e415e3ec72fa20, type: 3}
+  m_Name: Mud wheel effects
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleWheelEffectsProfile
+  clodMaterial: {fileID: 2100000, guid: 0c52a2f99d15b524d84f41ea1a23a319, type: 2}
+  splashMaterials:
+  - {fileID: 2100000, guid: ef4d6b7a895f1bb44a7e46d7938e1570, type: 2}
+  - {fileID: 2100000, guid: b7889aff4a7dc494d8f657b70b979eb1, type: 2}
+  - {fileID: 2100000, guid: edd57dfb3ba6ff141a7d2bae8728dd68, type: 2}
+  clodMeshes:
+  - {fileID: 4300000, guid: f4601cc6d2ddef348ba715d7a56b827e, type: 2}
+  - {fileID: 4300000, guid: f7ca2003d759e0e4894f8a6fcb94f821, type: 2}
+  - {fileID: 4300000, guid: cd4afa2eb0fd99b4facec90af5aa55bb, type: 2}
+  wetColour: {r: 0.19, g: 0.12, b: 0.065, a: 1}
+  dryColour: {r: 0.31, g: 0.25, b: 0.17, a: 1}
+  minimumSlipSpeed: 0.65
+  clodsPerSlipMetre: 8
+  dropletsPerSlipMetre: 24
+  maximumClodsPerSecond: 90
+  maximumDropletsPerSecond: 210
+  maximumParticlesPerLayer: 384
+  maximumImpactMarks: 96
+  markLifetimeSeconds: 75
+  maximumMarksPerSecond: 18
+  clodSizeMetres: {x: 0.025, y: 0.095}
+  dropletSizeMetres: {x: 0.012, y: 0.048}
+  maximumThrowSpeed: 8

@@ -1,0 +1,16 @@
+Park ambiences — Thimras, OpenGameArt, CC0.
+Source page: https://opengameart.org/content/park-ambiences
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Original recordings:
+https://opengameart.org/sites/default/files/park_ambience_birds.wav
+https://opengameart.org/sites/default/files/park_ambience_river.wav
+https://opengameart.org/sites/default/files/park_ambience_wind.wav
+
+Changes: first approximately 27 seconds, downmix to mono, box-filter downsample
+to 24 kHz PCM16, conservative peak normalization, one-second loop crossfade;
+resulting loops approximately 26 seconds. Unity imports as Vorbis in memory.
+These are genuine field recordings, not synthesized replacement effects.
+The source describes a public park in Adelaide, South Australia, in winter.
+They provide prototype ambience; no claim is made that the species are native
+to Siberian taiga. Truck sounds remain separate from this recorded ambience.

@@ -17,6 +17,13 @@ MonoBehaviour:
   winchKey: 42
   hornKey: 16
   pressureKey: 43
+  differentialLockKey: 24
+  diagnosticsKey: 96
+  differentialLockAvailable: 1
+  defaultDifferentialLocked: 0
+  maximumDifferentialSwitchSpeedKmh: 5
+  lockedAxleTorqueNm: 1800
+  lockedAxleCoupling: 45
   pressureAdjustmentAvailable: 1
   roadPressureBar: 2.2
   softGroundPressureBar: 1.2

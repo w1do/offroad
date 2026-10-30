@@ -1,0 +1,600 @@
+{
+  "materials": [
+    {
+      "name": "Material__1",
+      "color": [
+        0.9804,
+        0.9804,
+        0.9804,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 1,
+      "transparent": false
+    },
+    {
+      "name": "Material__2",
+      "color": [
+        0.0196,
+        0.0196,
+        0.0196,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 1,
+      "transparent": false
+    },
+    {
+      "name": "Material__3",
+      "color": [
+        0.1255,
+        0.1255,
+        0.6078,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 1,
+      "transparent": false
+    },
+    {
+      "name": "Material__4",
+      "color": [
+        0.8824,
+        0.7098,
+        0.0235,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 1,
+      "transparent": false
+    },
+    {
+      "name": "black",
+      "color": [
+        0.0784,
+        0.0784,
+        0.0784,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.9599887132741243,
+      "transparent": false
+    },
+    {
+      "name": "brakedisk",
+      "color": [
+        0.4941,
+        0.4941,
+        0.4941,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.876695959767343,
+      "transparent": false
+    },
+    {
+      "name": "carpaint",
+      "color": [
+        0.4157,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.7495158084657634,
+      "transparent": false
+    },
+    {
+      "name": "carpaint_second",
+      "color": [
+        0.6392,
+        0.6392,
+        0.6392,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.7495158084657634,
+      "transparent": false
+    },
+    {
+      "name": "chrome",
+      "color": [
+        0.5373,
+        0.5373,
+        0.5373,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.789490385891071,
+      "transparent": false
+    },
+    {
+      "name": "clearglass",
+      "color": [
+        0.588,
+        0.588,
+        0.588,
+        0.2
+      ],
+      "metallic": 0.0,
+      "roughness": 0.7549057166201649,
+      "transparent": true
+    },
+    {
+      "name": "interior",
+      "color": [
+        0.3961,
+        0.3961,
+        0.3961,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.9359819412385988,
+      "transparent": false
+    },
+    {
+      "name": "mirror",
+      "color": [
+        0.4667,
+        0.5373,
+        0.5255,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.9715479291091493,
+      "transparent": false
+    },
+    {
+      "name": "orangeglass",
+      "color": [
+        0.7373,
+        0.2941,
+        0.0,
+        0.3
+      ],
+      "metallic": 0.0,
+      "roughness": 0.722793674058308,
+      "transparent": true
+    },
+    {
+      "name": "material",
+      "color": [
+        0.6667,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.9597507764050037,
+      "transparent": false
+    },
+    {
+      "name": "redglass",
+      "color": [
+        0.4314,
+        0.0471,
+        0.0471,
+        0.3
+      ],
+      "metallic": 0.0,
+      "roughness": 0.722793674058308,
+      "transparent": true
+    },
+    {
+      "name": "material_15",
+      "color": [
+        0.6784,
+        0.6784,
+        0.6784,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.9295790738548584,
+      "transparent": false
+    },
+    {
+      "name": "tire",
+      "color": [
+        0.1059,
+        0.1059,
+        0.1059,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.8974,
+      "transparent": false
+    },
+    {
+      "name": "windowglass",
+      "color": [
+        0.0706,
+        0.1333,
+        0.1137,
+        0.3
+      ],
+      "metallic": 0.0,
+      "roughness": 0.722793674058308,
+      "transparent": true
+    }
+  ],
+  "parts": [
+    {
+      "name": "Object_0",
+      "file": "part_00_0.bytes",
+      "material": 11,
+      "wheel": false
+    },
+    {
+      "name": "Object_1",
+      "file": "part_01_0.bytes",
+      "material": 17,
+      "wheel": false
+    },
+    {
+      "name": "Object_2",
+      "file": "part_02_0.bytes",
+      "material": 0,
+      "wheel": false
+    },
+    {
+      "name": "Object_3",
+      "file": "part_03_0.bytes",
+      "material": 1,
+      "wheel": false
+    },
+    {
+      "name": "Object_4",
+      "file": "part_04_0.bytes",
+      "material": 2,
+      "wheel": false
+    },
+    {
+      "name": "Object_5",
+      "file": "part_05_0.bytes",
+      "material": 3,
+      "wheel": false
+    },
+    {
+      "name": "Object_6",
+      "file": "part_06_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_7",
+      "file": "part_07_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_8",
+      "file": "part_08_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_9",
+      "file": "part_09_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_10",
+      "file": "part_10_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_11",
+      "file": "part_11_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_12",
+      "file": "part_12_0.bytes",
+      "material": 4,
+      "wheel": false
+    },
+    {
+      "name": "Object_13",
+      "file": "part_13_0.bytes",
+      "material": 5,
+      "wheel": false
+    },
+    {
+      "name": "Object_14",
+      "file": "part_14_0.bytes",
+      "material": 5,
+      "wheel": false
+    },
+    {
+      "name": "Object_15",
+      "file": "part_15_0.bytes",
+      "material": 5,
+      "wheel": false
+    },
+    {
+      "name": "Object_16",
+      "file": "part_16_0.bytes",
+      "material": 6,
+      "wheel": false
+    },
+    {
+      "name": "Object_17",
+      "file": "part_17_0.bytes",
+      "material": 6,
+      "wheel": false
+    },
+    {
+      "name": "Object_18",
+      "file": "part_18_0.bytes",
+      "material": 6,
+      "wheel": false
+    },
+    {
+      "name": "Object_19",
+      "file": "part_19_0.bytes",
+      "material": 7,
+      "wheel": false
+    },
+    {
+      "name": "Object_20",
+      "file": "part_20_0.bytes",
+      "material": 7,
+      "wheel": false
+    },
+    {
+      "name": "Object_21",
+      "file": "part_21_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_22",
+      "file": "part_22_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_23",
+      "file": "part_23_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_24",
+      "file": "part_24_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_25",
+      "file": "part_25_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_26",
+      "file": "part_26_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_27",
+      "file": "part_27_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_28",
+      "file": "part_28_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_29",
+      "file": "part_29_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_30",
+      "file": "part_30_0.bytes",
+      "material": 8,
+      "wheel": false
+    },
+    {
+      "name": "Object_31",
+      "file": "part_31_0.bytes",
+      "material": 9,
+      "wheel": false
+    },
+    {
+      "name": "Object_32",
+      "file": "part_32_0.bytes",
+      "material": 9,
+      "wheel": false
+    },
+    {
+      "name": "Object_33",
+      "file": "part_33_0.bytes",
+      "material": 9,
+      "wheel": false
+    },
+    {
+      "name": "Object_34",
+      "file": "part_34_0.bytes",
+      "material": 10,
+      "wheel": false
+    },
+    {
+      "name": "Object_35",
+      "file": "part_35_0.bytes",
+      "material": 10,
+      "wheel": false
+    },
+    {
+      "name": "Object_36",
+      "file": "part_36_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_37",
+      "file": "part_37_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_38",
+      "file": "part_38_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_39",
+      "file": "part_39_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_40",
+      "file": "part_40_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_41",
+      "file": "part_41_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_42",
+      "file": "part_42_0.bytes",
+      "material": 12,
+      "wheel": false
+    },
+    {
+      "name": "Object_43",
+      "file": "part_43_0.bytes",
+      "material": 13,
+      "wheel": false
+    },
+    {
+      "name": "Object_44",
+      "file": "part_44_0.bytes",
+      "material": 14,
+      "wheel": false
+    },
+    {
+      "name": "Object_45",
+      "file": "part_45_0.bytes",
+      "material": 14,
+      "wheel": false
+    },
+    {
+      "name": "Object_46",
+      "file": "part_46_0.bytes",
+      "material": 14,
+      "wheel": false
+    },
+    {
+      "name": "Object_47",
+      "file": "part_47_0.bytes",
+      "material": 15,
+      "wheel": true
+    },
+    {
+      "name": "Object_48",
+      "file": "part_48_0.bytes",
+      "material": 15,
+      "wheel": true
+    },
+    {
+      "name": "Object_49",
+      "file": "part_49_0.bytes",
+      "material": 15,
+      "wheel": true
+    },
+    {
+      "name": "Object_50",
+      "file": "part_50_0.bytes",
+      "material": 15,
+      "wheel": true
+    },
+    {
+      "name": "Object_51",
+      "file": "part_51_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_52",
+      "file": "part_52_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_53",
+      "file": "part_53_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_54",
+      "file": "part_54_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_55",
+      "file": "part_55_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_56",
+      "file": "part_56_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_57",
+      "file": "part_57_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_58",
+      "file": "part_58_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_59",
+      "file": "part_59_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_60",
+      "file": "part_60_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_61",
+      "file": "part_61_0.bytes",
+      "material": 16,
+      "wheel": true
+    },
+    {
+      "name": "Object_62",
+      "file": "part_62_0.bytes",
+      "material": 16,
+      "wheel": true
+    }
+  ]
+}

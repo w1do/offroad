@@ -15,6 +15,28 @@ MonoBehaviour:
   displayName: MITSUBISHI PAJERO SPORT
   equipment: {fileID: 11400000, guid: c873e718c709b3e40844d2d9d8884264, type: 2}
   wheelEffects: {fileID: 11400000, guid: c37ed1f369b722e4f8464076a2f49f18, type: 2}
+  rutContact:
+    enabled: 1
+    shoulderSupport: 1
+    longitudinalSupport: 1
+    longitudinalSamples: 9
+    adaptiveLongitudinalSampling: 1
+    arcRefinementSteps: 5
+    arcRefinementHeightMetres: 0.01
+    maximumLongitudinalArcDegrees: 65
+    maximumLongitudinalReactionNewtons: 14000
+    widthSamples: 5
+    shoulderCrownDropMetres: 0.012
+    supportSwitchHysteresisMetres: 0.003
+    minimumSupportGainMetres: 0.002
+    minimumWallSlopeDegrees: 28
+    sidewallSpringNewtonsPerMetre: 60000
+    sidewallDamperNsPerMetre: 1800
+    maximumForcePerWheelNewtons: 9000
+    maximumCompressionMetres: 0.07
+    contactSkinMetres: 0.003
+    shoulderArcDegrees: 45
+    deflatedStiffnessMultiplier: 0.7
   massKg: 2050
   centreOfMass: {x: 0, y: 0.54, z: -0.03}
   maximumSpeedKmh: 200
@@ -165,6 +187,7 @@ MonoBehaviour:
     wheelMass: 30
     suspensionTravel: 0.22
     tyreWidthMetres: 0.285
+    tire: {fileID: 11400000, guid: 1e538aed04767844f9b8dda4d9896e00, type: 2}
     wheelDampingRate: 0.02
     springNPerMetre: 38000
     damperNsPerMetre: 5800
@@ -186,6 +209,7 @@ MonoBehaviour:
     wheelMass: 30
     suspensionTravel: 0.22
     tyreWidthMetres: 0.285
+    tire: {fileID: 11400000, guid: 1e538aed04767844f9b8dda4d9896e00, type: 2}
     wheelDampingRate: 0.02
     springNPerMetre: 38000
     damperNsPerMetre: 5800

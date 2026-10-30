@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "test": "soil resistance dissipates energy even with negative WheelHit.force",
+      "passed": true
+    },
+    {
+      "test": "soil pressure, spin, deflation, step",
+      "light": 0.0,
+      "loaded": 0.120000228,
+      "spin": 0.38,
+      "deflated": 0.258603,
+      "halfStep": 0.38
+    },
+    {
+      "test": "streaming and collider",
+      "depth": 0.188266769,
+      "packed": 0.0941333845,
+      "colliderHeight": 9.811733
+    },
+    {
+      "test": "banks and persistent tread mask",
+      "bankHeightMetres": 0.039950043,
+      "imprint": 0.1764706
+    },
+    {
+      "test": "collider budget and fairness",
+      "firstStepCommits": 2
+    },
+    {
+      "test": "water force",
+      "force": "(-2500.00, 1226.25, 0.00)"
+    },
+    {
+      "test": "water volume and intake exposure",
+      "waterDepth": 0.5,
+      "latched": true
+    },
+    {
+      "test": "Pajero wiring and lock",
+      "ratedPowerKw": 162.0,
+      "peakTorqueNm": 281.0
+    }
+  ]
+}

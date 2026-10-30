@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "firm": {
+    "soft": false,
+    "seconds": 4,
+    "travelMetres": 12.6346111,
+    "maximumSpeedMps": 6.069961,
+    "spinMps": 7.820215,
+    "rutDepthMetres": 0.002950279,
+    "simulationWallMs": 208.17340000000002
+  },
+  "mud": {
+    "soft": true,
+    "seconds": 4,
+    "travelMetres": 0.0434294119,
+    "maximumSpeedMps": 0.2160101,
+    "spinMps": 10.9769182,
+    "rutDepthMetres": 0.124220081,
+    "simulationWallMs": 302.2815
+  }
+}

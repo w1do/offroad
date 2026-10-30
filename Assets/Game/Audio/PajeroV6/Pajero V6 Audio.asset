@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b552d66c86bf1f943a0ca4490acb2077, type: 3}
+  m_Name: Pajero V6 Audio
+  m_EditorClassIdentifier: Assembly-CSharp::TruckAudioProfile
+  engineBands:
+  - name: Idle
+    referenceRpm: 850
+    coast: {fileID: 8300000, guid: cb80dd83e808a1c48b06e33749ef2634, type: 3}
+    loaded: {fileID: 8300000, guid: f09a0848f14ce994d835f6cfcac2f1aa, type: 3}
+    gain: 0.75
+  - name: Low
+    referenceRpm: 1500
+    coast: {fileID: 8300000, guid: 439fc18b20b0ce2469a9de8b9c22ca61, type: 3}
+    loaded: {fileID: 8300000, guid: edb981132e613f04f81d88cb4827af3d, type: 3}
+    gain: 0.9
+  - name: Mid
+    referenceRpm: 3000
+    coast: {fileID: 8300000, guid: 4a73a839d5d9bd740b50985d2f66a52e, type: 3}
+    loaded: {fileID: 8300000, guid: 7a9552818edfbde458a512d1e2debcd9, type: 3}
+    gain: 0.9
+  - name: High
+    referenceRpm: 4500
+    coast: {fileID: 8300000, guid: 2ffd78be5c2b10643b178c8034747bf1, type: 3}
+    loaded: {fileID: 8300000, guid: ff24df0fae52a04409806b9cfa1f08ce, type: 3}
+    gain: 0.9
+  - name: Redline
+    referenceRpm: 6500
+    coast: {fileID: 8300000, guid: 90e8593320f0fa8408a602ffa3efb7a0, type: 3}
+    loaded: {fileID: 8300000, guid: 4282a76322f8e2440abbd2a1b3cb4ca6, type: 3}
+    gain: 0.9
+  engineStart: {fileID: 8300000, guid: ef0df41bd5739fc4a82a24d1be9eaac0, type: 3}
+  startupBlendSeconds: 2.3
+  enginePosition: {x: 0, y: 1, z: 1.2}
+  engineSpatialBlend: 0.85
+  rpmResponse: 18
+  loadResponse: 9
+  minimumRecordedPitch: 0.55
+  maximumRecordedPitch: 1.65
+  idle: {fileID: 8300000, guid: cb80dd83e808a1c48b06e33749ef2634, type: 3}
+  load: {fileID: 8300000, guid: 7a9552818edfbde458a512d1e2debcd9, type: 3}
+  road: {fileID: 8300000, guid: 85bdf2b5c0c6af14cbc453bb169e0541, type: 3}
+  slip: {fileID: 8300000, guid: b2b27a2c3db44e34b9006ebc07c8be2d, type: 3}
+  chains: {fileID: 8300000, guid: b4c7d0f290563d44b916fd8441fbc1ed, type: 3}
+  brakeAir: {fileID: 0}
+  gear: {fileID: 8300000, guid: e7b9a1f2ec29e6640a5eb239d43ce400, type: 3}
+  chainFitting: {fileID: 8300000, guid: 1629c582c601aa4488e9cc8fec9705b3, type: 3}
+  horn: {fileID: 8300000, guid: 313d59fbdd578854eb99af4707f2087d, type: 3}
+  masterVolume: 0.85
+  engineVolume: 0.72
+  roadVolume: 0.14
+  slipVolume: 0.18
+  chainVolume: 0.15
+  hornVolume: 0.28
+  effectVolume: 0.3
+  idleRpm: 850
+  maximumRpm: 6800
+  engineResponse: 18
+  wheelToEngineRatio: 9
+  idleReferenceRpm: 850
+  loadReferenceRpm: 1600
+  maximumEnginePitch: 4.5
+  minDistance: 6
+  maxDistance: 70

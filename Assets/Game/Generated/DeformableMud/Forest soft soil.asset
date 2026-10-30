@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ae32af853e8d84c9e3ae3967764b86, type: 3}
   m_Name: Forest soft soil
   m_EditorClassIdentifier: Assembly-CSharp::SoftGroundProfile
+  soil: {fileID: 11400000, guid: 26cc7aead0f64174db9c07500f9ae4bd, type: 2}
+  displacedSoilFraction: 0.35
+  maximumBermHeightMetres: 0.08
+  maximumColliderCommitsPerStep: 2
+  wheelContactHeightToleranceMetres: 0.006
   maximumDepthMetres: 0.38
   diggingMetresPerSecond: 0.065
   rollingCompactionMetresPerSecond: 0.025

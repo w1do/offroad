@@ -1,0 +1,8 @@
+/Assets/Game/Art/RoadScans/tire-tracks-in-mud/textured_Bake1_pbr_roughness.png filter=lfs diff=lfs merge=lfs -text
+/Models/Cars/kamaz-body-lowpoly.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Forest/update-dirt-road-through-forest.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Road/forest-mud-puddle.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Road/gravel-road-2.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Road/muddy-road-with-tire-tracks.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Road/tire-tracks-in-mud.zip filter=lfs diff=lfs merge=lfs -text
+/Models/Road/traktore-markak.zip filter=lfs diff=lfs merge=lfs -text

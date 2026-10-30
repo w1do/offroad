@@ -10,3 +10,10 @@
 *.csproj
 *.sln
 *.slnx
+
+# Local captures and recovery copies
+/work/
+/Assets/work/
+/Assets/work.meta
+/Assets/_Recovery/
+/Assets/_Recovery.meta

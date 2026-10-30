@@ -1,0 +1,28 @@
+Recorded gasoline V6 engine basis, not a verified Mitsubishi 6G72/6G74 recording.
+Author: EvanBoyerman (Evan Boyerman), Freesound.
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+Source recordings:
+https://freesound.org/people/EvanBoyerman/sounds/754775/
+Sports Car Accelerating/Speeding Up Fast - Exhaust (3.2L V6 V-Tec)
+https://freesound.org/people/EvanBoyerman/sounds/756000/
+Car Ignition Starting with Idle and Stop (Engine and Exhaust Mix)
+Downloaded public HQ MP3 versions linked by the source pages, 30 October 2026.
+Changes: mono conversion, high-pass cleanup, short segment extraction,
+pitch stabilization to approximate RPM bands, overlapped loop seams,
+level matching, low-pass coast variants, 44.1kHz PCM16 WAV export.
+The coast variants are filtered recordings, not separate off-load takes.
+RPM references are game calibration estimates, not measured tachometer data.
+Credit in distributed game: V6 engine recordings by EvanBoyerman / Freesound,
+CC BY 4.0, edited for this game. No endorsement implied.
+
+IdleCoast: reference 850 RPM; source 756000, 18..22s; duration 3.702s; peak 0.513; seam 0.00485
+IdleLoad: reference 850 RPM; source 756000, 18..22s; duration 3.702s; peak 0.525; seam 0.00542
+LowCoast: reference 1500 RPM; source 754775, 2.2..3.5s; duration 1.372s; peak 0.612; seam 0.03532
+LowLoad: reference 1500 RPM; source 754775, 2.2..3.5s; duration 1.372s; peak 0.610; seam 0.01680
+MidCoast: reference 3000 RPM; source 754775, 5.8..6.8s; duration 0.717s; peak 0.427; seam 0.03125
+MidLoad: reference 3000 RPM; source 754775, 5.8..6.8s; duration 0.717s; peak 0.465; seam 0.01062
+HighCoast: reference 4500 RPM; source 754775, 8.6..9.7s; duration 0.929s; peak 0.458; seam 0.00158
+HighLoad: reference 4500 RPM; source 754775, 8.6..9.7s; duration 0.929s; peak 0.495; seam 0.00265
+RedlineCoast: reference 6500 RPM; source 754775, 20..21.5s; duration 1.387s; peak 0.381; seam 0.03336
+RedlineLoad: reference 6500 RPM; source 754775, 20..21.5s; duration 1.387s; peak 0.426; seam 0.01860

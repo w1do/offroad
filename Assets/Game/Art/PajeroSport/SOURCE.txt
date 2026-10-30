@@ -1,0 +1,3 @@
+User-supplied Models/Cars/2005-mitsubishi-pajero-sport.zip
+Internal GLB name: mitsubishi_pajero_sport_mk1_1996.glb. Archive filename is not proof of model-year accuracy.
+Original mesh geometry and material colors preserved. Converted to metres / Unity coordinates; dedicated tire and rim meshes only are animated. No third-party model was substituted.

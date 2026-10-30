@@ -24,10 +24,15 @@ public sealed class MudRoadSection : MonoBehaviour
     }
     public float SoftnessAt(Vector3 point)
     {
+        if(profile.fullWidthFurrows)return WeightAt(point);
         var p=transform.InverseTransformPoint(point);float rut=RutAt(p)/Mathf.Max(.01f,profile.rightRutDepthMetres);
         return Mathf.Clamp01(WeightAt(point)*.4f+rut*.65f);
     }
     public float GripAt(Vector3 point)=>Mathf.Lerp(profile.firmGripMultiplier,profile.softGripMultiplier,SoftnessAt(point));
     public float DigAt(Vector3 point)=>Mathf.Lerp(profile.firmDigMultiplier,profile.softDigMultiplier,SoftnessAt(point));
-    public float ResistanceAt(Vector3 point,float depth)=>profile.buriedRollingResistance*Mathf.Clamp01((depth+RutAt(transform.InverseTransformPoint(point)))/.3f)*SoftnessAt(point);
+    public float ResistanceAt(Vector3 point,float depth)
+    {
+        float initialBurial=profile.fullWidthFurrows?profile.fullWidthBedDepthMetres:RutAt(transform.InverseTransformPoint(point));
+        return profile.buriedRollingResistance*Mathf.Clamp01((depth+initialBurial)/.3f)*SoftnessAt(point);
+    }
 }

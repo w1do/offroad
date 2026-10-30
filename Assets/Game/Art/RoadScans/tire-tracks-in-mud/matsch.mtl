@@ -1,0 +1,15 @@
+# Blender MTL File: 'untitled.blend'
+# Material Count: 1
+
+newmtl textured_0
+Ns 1.000002
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.512727 0.512727 0.512727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump textured_0_norm_sj1VXpy9.jpg
+map_Ks C:\\Users\\user\\Desktop\\SimpleBake_Bakes_21102021-0558\\textured_Bake1_pbr_specular.png
+map_Ns C:\\Users\\user\\Desktop\\SimpleBake_Bakes_21102021-0558\\textured_Bake1_pbr_roughness.png

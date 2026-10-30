@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName="Game/World/Mud road section")]
 public sealed class MudRoadProfile : ScriptableObject
 {
+    [Header("Full-width furrow bed / prototype metres")]
+    public bool fullWidthFurrows;
+    public float fullWidthBedDepthMetres=.12f,furrowReliefMetres=.075f,furrowTileMetres=2.1f;
     [Header("Prototype calibration, metres")]
     public float edgeBlendMetres=1.05f;
     public float trackHalfSpacingMetres=.8f,trackHalfWidthMetres=.42f;

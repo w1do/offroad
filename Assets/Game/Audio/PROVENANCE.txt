@@ -1,0 +1,13 @@
+Original procedural prototype sound effects for this project.
+Created from mathematical oscillators, filtered pseudorandom noise and envelopes
+using Python's standard library. No third-party recordings or sample packs.
+These are synthesized approximations, not recordings of an actual KAMAZ.
+
+9 mono PCM WAV files, 32000 Hz / 16 bit:
+DieselIdle, DieselLoad, TireRoad, TireSlip, ChainRattle,
+AirBrakeRelease, GearShift, ChainFitting, TruckHorn.
+
+Runtime clips/volumes/response/distances are configured in KamazAudio.asset.
+ConfigureTruckAudio.cs imports clips and wires the scene's audio sources.
+ValidateTruckAudio.cs checks PCM, playback, output samples and response/events.
+Generated source script: work/generate_truck_audio.py (outside Assets).

@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "native": {
+    "enabled": false,
+    "stepSeconds": 0.01,
+    "maximumLateralOffsetMetres": 0.18960014,
+    "finalLateralOffsetMetres": -0.152852982,
+    "contacts": 0,
+    "peakReactionNewtons": 0.0,
+    "peakSpeedMps": 2.38537216,
+    "peakRollDegrees": 3.88409424,
+    "finalPosition": "(-0.123, 0.115, 2.630)"
+  },
+  "contact": {
+    "enabled": true,
+    "stepSeconds": 0.01,
+    "maximumLateralOffsetMetres": 0.04820487,
+    "finalLateralOffsetMetres": -0.00722626224,
+    "contacts": 88,
+    "peakReactionNewtons": 9827.595,
+    "peakSpeedMps": 2.38537216,
+    "peakRollDegrees": 3.95269775,
+    "finalPosition": "(0.023, 0.121, 2.623)"
+  },
+  "largerStep": {
+    "enabled": true,
+    "stepSeconds": 0.02,
+    "maximumLateralOffsetMetres": 0.04547,
+    "finalLateralOffsetMetres": -0.00412823074,
+    "contacts": 53,
+    "peakReactionNewtons": 13497.47,
+    "peakSpeedMps": 2.38537216,
+    "peakRollDegrees": 4.26281738,
+    "finalPosition": "(0.026, 0.120, 2.619)"
+  }
+}
