@@ -11,3 +11,4 @@ Models/Forest/seamless-muddy-forest-ground-pbr-texture.zip filter=lfs diff=lfs m
 Models/Road/bicycle-trail-road-tile-texture.zip filter=lfs diff=lfs merge=lfs -text
 Assets/Game/Art/MuddyForestFloor/muddyleaves_0003_normal.png filter=lfs diff=lfs merge=lfs -text
 Models/Forest/forest-floor-material.zip filter=lfs diff=lfs merge=lfs -text
+Models/PolyHaven/** filter=lfs diff=lfs merge=lfs -text
