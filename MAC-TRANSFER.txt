@@ -24,9 +24,13 @@ Assets/_Recovery и файлы IDE в архив не входят. Они ос�
 плагинов Windows в Assets. Фактический импорт, компиляция и запуск
 на Mac ещё не проверены. Это не гарантия совместимости конкретного Mac.
 
-Remote Git не настроен, коммит остаётся локальным.
-Некоторые исходные ZIP моделей больше 100 MiB; для публикации на
-GitHub отдельно потребуется решить хранение больших файлов.
+GitHub: https://github.com/w1do/offroad.git
+Крупные файлы хранятся через Git LFS. Перед клонированием на Mac
+установить Git LFS (например, brew install git-lfs), выполнить
+git lfs install, затем git clone https://github.com/w1do/offroad.git.
+В клонированной папке выполнить git lfs pull до открытия Unity.
+ZIP, ранее подготовленный для переноса, содержит полные файлы
+и не требует Git LFS.
 
 Дополнительная проверка GUID:
 Дубликатов GUID ассетов нет. В Assets/Settings/DefaultVolumeProfile.asset
