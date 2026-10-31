@@ -16,8 +16,6 @@ public sealed class SoftGroundRuts : MonoBehaviour
     public float LastPressurePascal {get;private set;}
     public float MaximumCompaction {get;private set;}
     static int commitCursor;
-    static readonly Dictionary<string,float[]> retainedCompaction=new Dictionary<string,float[]>();
-    static readonly Dictionary<string,float[]> retainedBerms=new Dictionary<string,float[]>();
     readonly Dictionary<Vector2Int,List<int>> grid=new Dictionary<Vector2Int,List<int>>();
     static readonly List<SoftGroundRuts> active=new List<SoftGroundRuts>();
     static readonly Dictionary<Vector2Int,List<SoftGroundRuts>> neighbourhood=new Dictionary<Vector2Int,List<SoftGroundRuts>>();
@@ -33,18 +31,21 @@ public sealed class SoftGroundRuts : MonoBehaviour
     static Vector2Int Region(Vector3 p)=>new Vector2Int(Mathf.FloorToInt(p.x/4),Mathf.FloorToInt(p.z/4));
     void Unregister(){foreach(var cell in registeredCells)if(neighbourhood.TryGetValue(cell,out var list)){list.Remove(this);if(list.Count==0)neighbourhood.Remove(cell);}registeredCells.Clear();}
     void Register(){Unregister();if(runtimeMesh==null)return;contactBounds=GetComponent<Renderer>().bounds;contactBounds.Expand(new Vector3(2,(profile==null?maximumDepth:profile.maximumDepthMetres)+2,2));var lo=Region(contactBounds.min);var hi=Region(contactBounds.max);for(int z=lo.y;z<=hi.y;z++)for(int x=lo.x;x<=hi.x;x++){var cell=new Vector2Int(x,z);if(!neighbourhood.TryGetValue(cell,out var list))neighbourhood[cell]=list=new List<SoftGroundRuts>();list.Add(this);registeredCells.Add(cell);}}
-    static readonly Dictionary<string,float[]> retained=new Dictionary<string,float[]>();
+    static readonly Dictionary<string,byte[]> retained=new Dictionary<string,byte[]>();
+    bool retainedOnDisable;
+    public static long RetainedBytes {get {long bytes=0;foreach(var state in retained.Values)bytes+=state.LongLength;return bytes;}}
     const float CellSize=.2f;
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void NewSession(){retained.Clear();retainedCompaction.Clear();retainedBerms.Clear();active.Clear();neighbourhood.Clear();commitCursor=0;}
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void NewSession(){retained.Clear();active.Clear();neighbourhood.Clear();commitCursor=0;}
     public void ShiftOrigin(Vector3 delta){Register();} // Grid uses offsets relative to the patch, so it moves with its Transform.
     void OnEnable()
     {
+        retainedOnDisable=false;
         if(!Application.isPlaying)return;if(!active.Contains(this))active.Add(this);if(runtimeMesh!=null){BuildGrid();Register();return;}
         physical=GetComponent<MeshCollider>();var filter=GetComponent<MeshFilter>();if(filter.sharedMesh==null)return;
         runtimeMesh=Instantiate(filter.sharedMesh);runtimeMesh.name="Deformable visible mud";runtimeMesh.MarkDynamic();filter.sharedMesh=runtimeMesh;
         original=runtimeMesh.vertices;vertices=(Vector3[])original.Clone();depths=new float[vertices.Length];compaction=new float[vertices.Length];berms=new float[vertices.Length];vertexAreas=new float[vertices.Length];
         var sourceTriangles=runtimeMesh.triangles;for(int t=0;t<sourceTriangles.Length;t+=3){int a=sourceTriangles[t],b=sourceTriangles[t+1],c=sourceTriangles[t+2];float area=Mathf.Abs(Vector3.Cross(transform.TransformVector(original[b]-original[a]),transform.TransformVector(original[c]-original[a])).y)/6;vertexAreas[a]+=area;vertexAreas[b]+=area;vertexAreas[c]+=area;}
-        collisionMesh=Instantiate(runtimeMesh);collisionMesh.name="Matching mud collision";var front=runtimeMesh.triangles;for(int i=0;i<front.Length;i+=3){Vector3 ab=transform.TransformVector(original[front[i+1]]-original[front[i]]),ac=transform.TransformVector(original[front[i+2]]-original[front[i]]);if(Vector3.Cross(ab,ac).y<0){int swap=front[i+1];front[i+1]=front[i+2];front[i+2]=swap;}}collisionMesh.subMeshCount=1;collisionMesh.triangles=front;physical.sharedMesh=collisionMesh;
+        collisionMesh=new Mesh{name="Matching mud collision",indexFormat=runtimeMesh.indexFormat};collisionMesh.MarkDynamic();collisionMesh.vertices=original;var front=runtimeMesh.triangles;for(int i=0;i<front.Length;i+=3){Vector3 ab=transform.TransformVector(original[front[i+1]]-original[front[i]]),ac=transform.TransformVector(original[front[i+2]]-original[front[i]]);if(Vector3.Cross(ab,ac).y<0){int swap=front[i+1];front[i+1]=front[i+2];front[i+2]=swap;}}collisionMesh.subMeshCount=1;collisionMesh.triangles=front;physical.sharedMesh=collisionMesh;
         BuildGrid();
         if(!string.IsNullOrEmpty(persistentId))RestoreRetained();
         Register();
@@ -106,11 +107,22 @@ public sealed class SoftGroundRuts : MonoBehaviour
         var oldVisible=runtimeMesh;var oldPhysical=collisionMesh;Unregister();runtimeMesh=null;collisionMesh=null;DugDepth=0;GetComponent<MeshFilter>().sharedMesh=source;OnEnable();
         for(int i=0;i<saved.Length;i++){depths[i]=saved[i];compaction[i]=savedPacking[i];berms[i]=savedBanks[i];vertices[i]=original[i]+transform.InverseTransformVector(Vector3.up*(berms[i]-depths[i]));DugDepth=Mathf.Max(DugDepth,saved[i]);}dirty=true;Commit();Register();Destroy(oldVisible);Destroy(oldPhysical);
     }
-    void OnDisable(){active.Remove(this);Unregister();Retain();}
+    void OnDisable(){active.Remove(this);Unregister();Retain();retainedOnDisable=true;}
     static Vector2Int Cell(Vector3 p)=>new Vector2Int(Mathf.FloorToInt(p.x/CellSize),Mathf.FloorToInt(p.z/CellSize));
     public void BindPersistence(string key){persistentId=key;RestoreRetained();var tracks=GetComponent<TireTrackRenderer>();if(tracks!=null)tracks.BindPersistence(key);}
-    void Retain(){if(depths!=null&&!string.IsNullOrEmpty(persistentId)&&DugDepth>0){retained[persistentId]=(float[])depths.Clone();retainedCompaction[persistentId]=(float[])compaction.Clone();retainedBerms[persistentId]=(float[])berms.Clone();}}
-    void RestoreRetained(){if(depths==null||!retained.TryGetValue(persistentId,out var saved)||saved.Length!=depths.Length)return;System.Array.Copy(saved,depths,depths.Length);if(retainedBerms.TryGetValue(persistentId,out var banks)&&banks.Length==berms.Length)System.Array.Copy(banks,berms,banks.Length);if(retainedCompaction.TryGetValue(persistentId,out var packed)&&packed.Length==compaction.Length){System.Array.Copy(packed,compaction,packed.Length);foreach(float c in packed)MaximumCompaction=Mathf.Max(MaximumCompaction,c);}for(int i=0;i<vertices.Length;i++){vertices[i]=original[i]+transform.InverseTransformVector(Vector3.up*(berms[i]-depths[i]));DugDepth=Mathf.Max(DugDepth,depths[i]);}dirty=true;Commit();}
+    void Retain()
+    {
+        if(depths==null||string.IsNullOrEmpty(persistentId))return;
+        if(DugDepth>0||MaximumCompaction>0)retained[persistentId]=SurfaceStatePacking.Pack(depths,compaction,berms);
+        else retained.Remove(persistentId);
+    }
+    void RestoreRetained()
+    {
+        if(depths==null||!retained.TryGetValue(persistentId,out var saved)||!SurfaceStatePacking.Restore(saved,depths,compaction,berms))return;
+        foreach(float c in compaction)MaximumCompaction=Mathf.Max(MaximumCompaction,c);
+        for(int i=0;i<vertices.Length;i++){vertices[i]=original[i]+transform.InverseTransformVector(Vector3.up*(berms[i]-depths[i]));DugDepth=Mathf.Max(DugDepth,depths[i]);}
+        dirty=true;Commit();
+    }
     public static void Contact(Vector3 point,Vector3 forward,float width,float loadNewtons,float slipSpeed,float pressureLoadMultiplier,float seconds,float contactAreaSquareMetres=0,UnityEngine.SceneManagement.Scene? contactScene=null)
     {
         if(loadNewtons<=0||seconds<=0||!neighbourhood.TryGetValue(Region(point),out var nearby))return;
@@ -184,5 +196,5 @@ public sealed class SoftGroundRuts : MonoBehaviour
     }
     public void Commit(){if(!dirty||runtimeMesh==null)return;runtimeMesh.vertices=vertices;runtimeMesh.RecalculateNormals();runtimeMesh.RecalculateBounds();runtimeMesh.RecalculateTangents();collisionMesh.vertices=vertices;collisionMesh.RecalculateBounds();physical.sharedMesh=null;physical.sharedMesh=collisionMesh;for(int i=0;i<cookedDisplacement.Length;i++)cookedDisplacement[i]=berms[i]-depths[i];pendingHeightError=0;contactPriority=false;dirty=false;clock=0;CommitCount++;}
     public float DepthAt(Vector3 point){if(depths==null)return 0;var centre=Cell(point-transform.position);float best=float.MaxValue,value=0;for(int z=-1;z<=1;z++)for(int x=-1;x<=1;x++)if(grid.TryGetValue(centre+new Vector2Int(x,z),out var indices))foreach(int i in indices){var world=transform.TransformPoint(original[i]);float d=new Vector2(world.x-point.x,world.z-point.z).sqrMagnitude;if(d<best){best=d;value=Mathf.Max(0,depths[i]-berms[i]);}}return value;}
-    void OnDestroy(){active.Remove(this);Unregister();Retain();if(runtimeMesh!=null)Destroy(runtimeMesh);if(collisionMesh!=null)Destroy(collisionMesh);}
+    void OnDestroy(){active.Remove(this);Unregister();if(!retainedOnDisable)Retain();if(runtimeMesh!=null)Destroy(runtimeMesh);if(collisionMesh!=null)Destroy(collisionMesh);}
 }

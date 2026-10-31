@@ -22,6 +22,40 @@ public struct VehicleControlInput
 public sealed class VehiclePhysics : MonoBehaviour
 {
     public VehiclePhysicsProfile profile;
+    public VehicleLighting Lighting { get; private set; }
+    public bool LowBeamOn => LightController()!=null && Lighting.LowBeamOn;
+    public bool HighBeamOn => LightController()!=null && Lighting.HighBeamOn;
+    public bool FogLampsOn => LightController()!=null && Lighting.FogLampsOn;
+    private VehicleLighting LightController()
+    {
+        if(Lighting==null)Lighting=GetComponent<VehicleLighting>();
+        return Lighting;
+    }
+    public bool SetHeadlightMode(VehicleHeadlightMode mode)
+    {
+        var lights=LightController();if(lights==null||profile==null||profile.lighting==null)return false;
+        lights.Refresh();lights.SetMode(mode);lights.Refresh();return true;
+    }
+    public bool SetLowBeam(bool enabled)
+    {
+        var lights=LightController();if(lights==null||profile==null||profile.lighting==null)return false;
+        lights.Refresh();lights.SetHighBeam(false);lights.SetMode(enabled?VehicleHeadlightMode.On:VehicleHeadlightMode.Off);lights.Refresh();return true;
+    }
+    public bool SetHighBeam(bool enabled)
+    {
+        var lights=LightController();if(lights==null||profile==null||profile.lighting==null)return false;
+        lights.Refresh();lights.SetHighBeam(enabled);if(enabled)lights.SetMode(VehicleHeadlightMode.On);lights.Refresh();return true;
+    }
+    public bool SetFogLamps(bool enabled)
+    {
+        var lights=LightController();if(lights==null||profile==null||profile.lighting==null)return false;
+        lights.Refresh();if(enabled&&!lights.HeadlightsOn)SetLowBeam(true);lights.SetFogLamps(enabled);lights.Refresh();return true;
+    }
+    public bool CycleHeadlightMode()
+    {
+        var lights=LightController();if(lights==null||profile==null||profile.lighting==null)return false;
+        lights.Refresh();lights.CycleMode();lights.Refresh();return true;
+    }
     public VehicleAxleBinding[] axles;
     public bool automaticSimulation=true;
     public bool externalControl;
@@ -89,7 +123,10 @@ public sealed class VehiclePhysics : MonoBehaviour
     void OnEnable(){Initialize();}
     public void Initialize()
     {
+        Lighting=GetComponent<VehicleLighting>();
+        if(Lighting==null&&profile!=null&&profile.lighting!=null)Lighting=gameObject.AddComponent<VehicleLighting>();
         Ready=false;water=GetComponent<VehicleWaterInteraction>();body=GetComponent<Rigidbody>();chains=GetComponent<TruckChains>();effects=GetComponent<VehicleWheelEffects>();winch=GetComponent<VehicleWinch>();tyres=GetComponent<VehicleTyrePressure>();
+        if(tyres==null&&Application.isPlaying&&profile!=null&&profile.equipment!=null)tyres=gameObject.AddComponent<VehicleTyrePressure>();
         if(profile==null||axles==null)return;string error=profile.ValidationError(axles.Length);if(error!=null){Debug.LogError(name+": "+error,this);return;}
         DifferentialLocked=profile.equipment!=null&&profile.equipment.defaultDifferentialLocked;FourWheelDrive=profile.equipment!=null&&profile.equipment.defaultFourWheelDrive;DriveMessage=FourWheelDrive?"Полный привод включён":"Полный привод выключен — основной привод";
         Wheels=new WheelCollider[axles.Length*2];totalDriveShare=0;
@@ -102,7 +139,7 @@ public sealed class VehiclePhysics : MonoBehaviour
         }
         body.mass=profile.massKg;body.centerOfMass=profile.centreOfMass;body.angularDamping=profile.angularDamping;body.collisionDetectionMode=CollisionDetectionMode.ContinuousDynamic;body.solverIterations=12;body.solverVelocityIterations=6;
         rutWallContact=new bool[Wheels.Length];treadTravel=new float[Wheels.Length];hits=new WheelHit[Wheels.Length];grounded=new bool[Wheels.Length];chainedWheel=new bool[Wheels.Length];longGrip=new float[Wheels.Length];lateralGrip=new float[Wheels.Length];
-        recoveryPosition=body.position;recoveryRotation=body.rotation;Ready=true;ResetState();
+        recoveryPosition=body.position;recoveryRotation=body.rotation;Ready=true;if(tyres!=null)tyres.BindWheels();ResetState();
     }
     public void ResetState(){if(profile==null)return;Pedal=0;EngineLoad=0;EngineRpm=profile.idleRpm;engineOmega=EngineRpm*Mathf.PI/30;Gear=1;Neutral=false;shiftRemaining=0;clutchLocked=false;}
     public void SetRecoveryPoint(Vector3 p,Quaternion q){recoveryPosition=p;recoveryRotation=q;}
@@ -122,7 +159,7 @@ public sealed class VehiclePhysics : MonoBehaviour
     public void Step(float throttle,float steering,bool brake,bool handbrake){SetInput(new VehicleControlInput{throttle=throttle,steering=steering,brake=brake?1:0,handbrake=handbrake,precision=precisionGas});Simulate(Time.fixedDeltaTime);}
     public void Simulate(float dt)
     {
-        if(!Ready||dt<=0)return;if(water!=null)water.Simulate(dt);if(tyres!=null)tyres.Advance(dt);var input=Input;if(water!=null&&water.IntakeFlooded)input.throttle=0;float target=Mathf.Clamp01(input.throttle)*(input.precision?profile.precisionPedal:1);
+        if(!Ready||dt<=0)return;if(water!=null)water.Simulate(dt);if(tyres!=null){tyres.Advance(dt);tyres.SimulateShape(dt);}var input=Input;if(water!=null&&water.IntakeFlooded)input.throttle=0;float target=Mathf.Clamp01(input.throttle)*(input.precision?profile.precisionPedal:1);
         Pedal=Mathf.MoveTowards(Pedal,target,(target>Pedal?profile.pedalRisePerSecond:profile.pedalReleasePerSecond)*dt);BrakeApplied=input.brake>.01f||input.handbrake;shiftRemaining=Mathf.Max(0,shiftRemaining-dt);
         float speed=Vector3.Dot(body.linearVelocity,transform.forward);SlipAngle=Mathf.Atan2(LateralSpeed,Mathf.Max(1,Mathf.Abs(speed)))*Mathf.Rad2Deg;
         float ratio=(ReverseGear?profile.reverseRatio:profile.gears[Mathf.Clamp(Gear-1,0,profile.gears.Length-1)])*profile.finalDrive*(LowRange?profile.lowRatio:1);

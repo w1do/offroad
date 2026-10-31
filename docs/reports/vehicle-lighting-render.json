@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "mode": "off",
+      "enabledLights": 0,
+      "roadBrightness": 0.09303524
+    },
+    {
+      "mode": "low",
+      "enabledLights": 2,
+      "roadBrightness": 0.147948131
+    },
+    {
+      "mode": "high",
+      "enabledLights": 2,
+      "roadBrightness": 0.128310353
+    },
+    {
+      "mode": "fog",
+      "enabledLights": 4,
+      "roadBrightness": 0.202830732
+    },
+    {
+      "mode": "day-front",
+      "enabledLights": 0,
+      "roadBrightness": 0.303853542
+    },
+    {
+      "mode": "night-front",
+      "enabledLights": 2,
+      "roadBrightness": 0.117413349
+    }
+  ],
+  "check": "Every beam mode brightens the road versus OFF on separately rendered frames"
+}

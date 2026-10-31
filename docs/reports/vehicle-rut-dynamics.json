@@ -3,34 +3,34 @@
   "native": {
     "enabled": false,
     "stepSeconds": 0.01,
-    "maximumLateralOffsetMetres": 0.18960014,
-    "finalLateralOffsetMetres": -0.152852982,
+    "maximumLateralOffsetMetres": 0.286091834,
+    "finalLateralOffsetMetres": -0.143988445,
     "contacts": 0,
     "peakReactionNewtons": 0.0,
     "peakSpeedMps": 2.38537216,
-    "peakRollDegrees": 3.88409424,
-    "finalPosition": "(-0.123, 0.115, 2.630)"
+    "peakRollDegrees": 3.9931283,
+    "finalPosition": "(-0.114, 0.102, 2.635)"
   },
   "contact": {
     "enabled": true,
     "stepSeconds": 0.01,
-    "maximumLateralOffsetMetres": 0.04820487,
-    "finalLateralOffsetMetres": -0.00722626224,
-    "contacts": 88,
-    "peakReactionNewtons": 9827.595,
+    "maximumLateralOffsetMetres": 0.13873224,
+    "finalLateralOffsetMetres": -0.0200475082,
+    "contacts": 94,
+    "peakReactionNewtons": 6284.471,
     "peakSpeedMps": 2.38537216,
-    "peakRollDegrees": 3.95269775,
-    "finalPosition": "(0.023, 0.121, 2.623)"
+    "peakRollDegrees": 3.04322886,
+    "finalPosition": "(0.010, 0.116, 2.618)"
   },
   "largerStep": {
     "enabled": true,
     "stepSeconds": 0.02,
-    "maximumLateralOffsetMetres": 0.04547,
-    "finalLateralOffsetMetres": -0.00412823074,
-    "contacts": 53,
-    "peakReactionNewtons": 13497.47,
+    "maximumLateralOffsetMetres": 0.121730141,
+    "finalLateralOffsetMetres": -0.0414975323,
+    "contacts": 58,
+    "peakReactionNewtons": 6395.40137,
     "peakSpeedMps": 2.38537216,
-    "peakRollDegrees": 4.26281738,
-    "finalPosition": "(0.026, 0.120, 2.619)"
+    "peakRollDegrees": 2.169497,
+    "finalPosition": "(-0.011, 0.117, 2.618)"
   }
 }

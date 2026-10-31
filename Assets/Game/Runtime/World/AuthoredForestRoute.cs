@@ -31,6 +31,74 @@ public sealed class AuthoredForestRoute : MonoBehaviour
     public int ActiveArm {get;private set;}
     public double Distance=>arms==null||arms.Length==0?0:arms[ActiveArm].progress;
     readonly Dictionary<(int,int),GameObject> loaded=new Dictionary<(int,int),GameObject>();
+    readonly HashSet<(int,int)> wanted=new HashSet<(int,int)>();
+    readonly List<(int,int)> pendingRemoval=new List<(int,int)>();
+    [SerializeField,HideInInspector] bool hasReloadProgress;
+    [SerializeField,HideInInspector] int reloadActiveArm;
+    [SerializeField,HideInInspector] int[] reloadCurrent;
+    [SerializeField,HideInInspector] double[] reloadProgress;
+    void OnDisable()
+    {
+        if(!Application.isPlaying||arms==null)return;
+        if(reloadCurrent==null||reloadCurrent.Length!=arms.Length){reloadCurrent=new int[arms.Length];reloadProgress=new double[arms.Length];}
+        for(int a=0;a<arms.Length;a++){reloadCurrent[a]=arms[a].current;reloadProgress[a]=arms[a].progress;}
+        reloadActiveArm=ActiveArm;hasReloadProgress=true;
+    }
+    void OnEnable()
+    {
+        if(!Application.isPlaying)return;
+        Prepare();
+        bool saved=hasReloadProgress&&arms!=null&&reloadCurrent!=null&&reloadCurrent.Length==arms.Length;
+        if(saved){for(int a=0;a<arms.Length;a++){arms[a].current=Mathf.Clamp(reloadCurrent[a],0,arms[a].records.Length-1);arms[a].progress=reloadProgress[a];}ActiveArm=Mathf.Clamp(reloadActiveArm,0,arms.Length-1);}
+        RestoreLoadedWindow(!saved);
+    }
+    public void RestoreLoadedWindow(bool recoverProgress=false)
+    {
+        loaded.Clear();if(arms==null)return;
+        var winch=vehicle==null?null:vehicle.GetComponent<VehicleWinch>();
+        var duplicates=new List<GameObject>();
+        foreach(Transform child in transform){
+            if(!child.gameObject.activeSelf||child.GetComponent<AuthoredForestBlock>()==null)continue;
+            var identity=child.GetComponent<AuthoredForestBlockInstance>();
+            if(identity==null){
+                // Migrate modules created before serialized instance identities.
+                for(int a=0;a<arms.Length;a++){
+                    string prefix=arms[a].name+" / ";string label=child.name;
+                    if(!label.StartsWith(prefix)||!label.EndsWith(" km"))continue;
+                    string number=label.Substring(prefix.Length,label.Length-prefix.Length-3);
+                    if(!double.TryParse(number,System.Globalization.NumberStyles.Float,System.Globalization.CultureInfo.CurrentCulture,out double km)
+                        &&!double.TryParse(number,System.Globalization.NumberStyles.Float,System.Globalization.CultureInfo.InvariantCulture,out km))continue;
+                    double metres=km*1000;var records=arms[a].records;int low=0,high=records.Length-1;
+                    while(low<high){int mid=(low+high)/2;if(records[mid].distance<metres)low=mid+1;else high=mid;}
+                    int b=low;if(b>0&&System.Math.Abs(records[b-1].distance-metres)<System.Math.Abs(records[b].distance-metres))b--;
+                    if(System.Math.Abs(records[b].distance-metres)>5.1)continue;
+                    identity=child.gameObject.AddComponent<AuthoredForestBlockInstance>();identity.arm=a;identity.block=b;break;
+                }
+            }
+            if(identity==null||identity.arm<0||identity.arm>=arms.Length||identity.block<0||identity.block>=arms[identity.arm].records.Length)continue;
+            var key=(identity.arm,identity.block);
+            if(loaded.TryGetValue(key,out var existing)){
+                if(StatePriority(child.gameObject,winch)>StatePriority(existing,winch)){duplicates.Add(existing);loaded[key]=child.gameObject;}
+                else duplicates.Add(child.gameObject);
+            }else loaded.Add(key,child.gameObject);
+        }
+        foreach(var duplicate in duplicates){duplicate.SetActive(false);if(Application.isPlaying)Destroy(duplicate);else DestroyImmediate(duplicate);}
+        if(vehicle==null||!recoverProgress)return;
+        float nearest=float.PositiveInfinity;
+        for(int a=0;a<arms.Length;a++){
+            float armNearest=float.PositiveInfinity;int current=arms[a].current;
+            foreach(var pair in loaded){if(pair.Key.Item1!=a)continue;float distance=(pair.Value.transform.position-vehicle.position).sqrMagnitude;
+                if(distance<armNearest){armNearest=distance;current=pair.Key.Item2;}}
+            arms[a].current=current;arms[a].progress=arms[a].records[current].distance;
+            if(armNearest<nearest){nearest=armNearest;ActiveArm=a;}
+        }
+    }
+    static float StatePriority(GameObject block,VehicleWinch winch)
+    {
+        float priority=winch!=null&&winch.Pulling&&winch.AnchorTransform!=null&&winch.AnchorTransform.IsChildOf(block.transform)?1000000:0;
+        foreach(var soil in block.GetComponentsInChildren<SoftGroundRuts>())priority+=soil.DugDepth;
+        return priority;
+    }
     public void Prepare()
     {
         if(arms==null)return;
@@ -53,7 +121,7 @@ public sealed class AuthoredForestRoute : MonoBehaviour
     public Vector3 RoutePoint(int arm,int block,float localDistance){var r=arms[arm].records[block];return Position(arm,block)+Rotation(arm,block)*arms[arm].descriptions[r.module].Point(localDistance);}
     public GameObject CreateBlock(int arm,int block)
     {
-        Prepare();var r=arms[arm].records[block];var go=Instantiate(arms[arm].modules[r.module],Position(arm,block),Rotation(arm,block),transform);go.name=arms[arm].name+" / "+(r.distance/1000).ToString("F2")+" km";var soils=go.GetComponentsInChildren<SoftGroundRuts>();for(int i=0;i<soils.Length;i++)soils[i].BindPersistence("route/"+arm+"/"+block+"/"+i);return go;
+        Prepare();var r=arms[arm].records[block];var go=Instantiate(arms[arm].modules[r.module],Position(arm,block),Rotation(arm,block),transform);go.name=arms[arm].name+" / "+(r.distance/1000).ToString("F2")+" km";var identity=go.GetComponent<AuthoredForestBlockInstance>();if(identity==null)identity=go.AddComponent<AuthoredForestBlockInstance>();identity.arm=arm;identity.block=block;var soils=go.GetComponentsInChildren<SoftGroundRuts>();for(int i=0;i<soils.Length;i++)soils[i].BindPersistence("route/"+arm+"/"+block+"/"+i);return go;
     }
     public void LoadWindow(int arm,int block){Prepare();ActiveArm=arm;arms[arm].current=Mathf.Clamp(block,0,arms[arm].records.Length-1);arms[arm].progress=arms[arm].records[arms[arm].current].distance;EnsureWindow(true);}
     void Start(){if(editorPreview!=null)editorPreview.SetActive(false);Prepare();EnsureWindow(true);}
@@ -75,7 +143,7 @@ public sealed class AuthoredForestRoute : MonoBehaviour
     void FixedUpdate(){if(vehicle!=null&&new Vector2(vehicle.position.x,vehicle.position.z).sqrMagnitude>1500*1500)ShiftOrigin(new Vector3(Mathf.Round(vehicle.position.x/100)*100,0,Mathf.Round(vehicle.position.z/100)*100));}
     public void EnsureWindow(bool immediate)
     {
-        Prepare();var wanted=new HashSet<(int,int)>();
+        Prepare();wanted.Clear();
         for(int a=0;a<arms.Length;a++)
         {
             int current=arms[a].current;bool nearSource=(vehicle==null||Vector3.Distance(vehicle.position,new Vector3((float)(arms[a].entrance.x-OriginX),arms[a].entrance.y,(float)(arms[a].entrance.z-OriginZ)))<400);
@@ -83,7 +151,7 @@ public sealed class AuthoredForestRoute : MonoBehaviour
             for(int b=from;b<=to;b++)wanted.Add((a,b));
         }
         int built=0;foreach(var key in wanted)if(!loaded.ContainsKey(key)){loaded[key]=CreateBlock(key.Item1,key.Item2);if(!immediate&&++built>=2)break;}
-        var remove=new List<(int,int)>();foreach(var pair in loaded)if(!wanted.Contains(pair.Key)){var winch=vehicle==null?null:vehicle.GetComponent<VehicleWinch>();if(winch!=null&&winch.Pulling&&winch.AnchorTransform!=null&&winch.AnchorTransform.IsChildOf(pair.Value.transform))continue;remove.Add(pair.Key);}foreach(var key in remove){if(Application.isPlaying)Destroy(loaded[key]);else DestroyImmediate(loaded[key]);loaded.Remove(key);}
+        pendingRemoval.Clear();foreach(var pair in loaded)if(!wanted.Contains(pair.Key)){var winch=vehicle==null?null:vehicle.GetComponent<VehicleWinch>();if(winch!=null&&winch.Pulling&&winch.AnchorTransform!=null&&winch.AnchorTransform.IsChildOf(pair.Value.transform))continue;pendingRemoval.Add(pair.Key);}foreach(var key in pendingRemoval){if(Application.isPlaying)Destroy(loaded[key]);else DestroyImmediate(loaded[key]);loaded.Remove(key);}
         if(vehicle!=null&&loaded.ContainsKey((ActiveArm,arms[ActiveArm].current))&&vehicle.TryGetComponent<VehiclePhysics>(out var physics)){int i=arms[ActiveArm].current;var d=arms[ActiveArm].descriptions[arms[ActiveArm].records[i].module];var p=RoutePoint(ActiveArm,i,Mathf.Min(5,d.length))+.6f*Vector3.up;var dir=RoutePoint(ActiveArm,i,Mathf.Min(8,d.length))-RoutePoint(ActiveArm,i,Mathf.Min(5,d.length));physics.SetRecoveryPoint(p,Quaternion.LookRotation(dir));}
     }
     public void ShiftOrigin(Vector3 delta)

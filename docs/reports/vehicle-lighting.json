@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "initial day/night",
+    "twilight delay and hysteresis",
+    "manual override",
+    "low/high exclusivity",
+    "fog selection",
+    "independent vehicles with 3 and 9 lamps",
+    "disable cleanup",
+    "profile immutability",
+    "VehiclePhysics direct low/high/fog commands",
+    "immediate manual activation from OFF",
+    "return to AUTO"
+  ]
+}

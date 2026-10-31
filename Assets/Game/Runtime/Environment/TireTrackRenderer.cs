@@ -7,7 +7,8 @@ public sealed class TireTrackRenderer : MonoBehaviour
     [Range(64, 512)] public int resolution = 256;
     public string persistentId;
     public float maximumUploadHz = 12;
-    static readonly Dictionary<string, Color32[]> retained = new Dictionary<string, Color32[]>();
+    static readonly Dictionary<string, byte[]> retained = new Dictionary<string, byte[]>();
+    public static long RetainedBytes {get {long bytes=0;foreach(var state in retained.Values)bytes+=state.LongLength;return bytes;}}
     Texture2D mask;
     Color32[] pixels;
     Bounds bounds;
@@ -34,8 +35,8 @@ public sealed class TireTrackRenderer : MonoBehaviour
     public void BindPersistence(string key)
     {
         persistentId = key;
-        if (!string.IsNullOrEmpty(key) && retained.TryGetValue(key, out var saved) && saved.Length == resolution*resolution)
-        { EnsureMask(); System.Array.Copy(saved, pixels, pixels.Length); dirty = true; Upload(); }
+        if (!string.IsNullOrEmpty(key) && retained.TryGetValue(key, out var saved) )
+        { EnsureMask(); if(SurfaceStatePacking.Restore(saved,pixels)){dirty = true; Upload();} }
     }
     public float TrackAt(Vector3 world)
     {
@@ -65,7 +66,9 @@ public sealed class TireTrackRenderer : MonoBehaviour
             float blocks = Mathf.Repeat((longitudinal + phaseMetres) / Mathf.Max(.02f, repeatMetres) + Mathf.Abs(side) * .65f, 1);
             byte tread = (byte)(blocks < .58f && Mathf.Abs(side) > .12f ? 255 : 45);
             int index = z * resolution + x; var old = pixels[index];
-            pixels[index] = new Color32((byte)Mathf.Max(old.r, tread), (byte)Mathf.Max(old.g, Mathf.Clamp01(wetness) * 255), 0, 255); dirty = true;
+            byte red=(byte)Mathf.Max(old.r,tread),green=(byte)Mathf.Max(old.g,Mathf.Clamp01(wetness)*255);
+            if(old.r==red&&old.g==green&&old.b==0&&old.a==255)continue;
+            pixels[index]=new Color32(red,green,0,255);dirty=true;
         }
     }
     void LateUpdate() { uploadClock += Time.deltaTime; if (dirty && uploadClock >= 1 / Mathf.Max(1, maximumUploadHz)) Upload(); }
@@ -79,8 +82,8 @@ public sealed class TireTrackRenderer : MonoBehaviour
     }
     void OnDisable()
     {
-        if (pixels != null && !string.IsNullOrEmpty(persistentId)) retained[persistentId] = (Color32[])pixels.Clone();
-        if (mask != null) Destroy(mask); mask = null;
-        if(target!=null){if(properties==null)properties=new MaterialPropertyBlock();target.GetPropertyBlock(properties);properties.SetFloat("_DynamicSoil",0);target.SetPropertyBlock(properties);}
+        if (pixels != null && !string.IsNullOrEmpty(persistentId)) retained[persistentId] = SurfaceStatePacking.Pack(pixels);
+        if (mask != null) Destroy(mask); mask = null;pixels=null;dirty=false;
+        if(target!=null){if(properties==null)properties=new MaterialPropertyBlock();target.GetPropertyBlock(properties);properties.SetFloat("_DynamicSoil",0);properties.SetTexture("_SoilTrackMask",Texture2D.blackTexture);target.SetPropertyBlock(properties);}
     }
 }

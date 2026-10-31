@@ -45,6 +45,10 @@ R — восстановление. Диапазон и направление �
 Звук любой машины подключается через VehicleAudio и VehicleAudioProfile;
 инструкция: [vehicle-audio.md](vehicle-audio.md).
 
+Фары любой машины подключаются через VehicleLighting и Lighting в VehiclePhysicsProfile.
+Ближний, дальний, туманки, автоматическое включение в сумерках и произвольное
+количество ламп: [vehicle-lighting.md](vehicle-lighting.md).
+
 Привод и оснащение: назначить Equipment в VehiclePhysicsProfile, выбрать Primary Drive
 для осей, работающих в 2WD. В инспекторе профиля можно создать отдельный Equipment asset
 и редактировать клавиши, цепи, нагрев/износ и лебёдку прямо под физическими настройками.

@@ -16,6 +16,10 @@ public sealed class VehiclePhysicsEditor : Editor
             if(!string.IsNullOrEmpty(path)){Undo.RecordObject(vehicle,"Assign vehicle profile");var profile=vehicle.profile!=null?Instantiate(vehicle.profile):CreateInstance<VehiclePhysicsProfile>();profile.displayName=vehicle.name;AssetDatabase.CreateAsset(profile,path);vehicle.profile=profile;EditorUtility.SetDirty(vehicle);Selection.activeObject=profile;}
         }
         if(vehicle.profile==null)return;
+        if(vehicle.profile.lighting!=null&&GUILayout.Button("Подключить общую систему фар")){
+            if(vehicle.GetComponent<VehicleLighting>()==null)Undo.AddComponent<VehicleLighting>(vehicle.gameObject);
+            EditorUtility.SetDirty(vehicle);EditorSceneManager.MarkSceneDirty(vehicle.gameObject.scene);
+        }
         if(vehicle.profile.equipment!=null&&GUILayout.Button("Подключить привод, цепи и лебёдку из профиля")){
             if(vehicle.GetComponent<TruckChains>()==null)Undo.AddComponent<TruckChains>(vehicle.gameObject);
             if(vehicle.GetComponent<VehicleWinch>()==null)Undo.AddComponent<VehicleWinch>(vehicle.gameObject);

@@ -131,7 +131,7 @@ public sealed class LongRouteStream : MonoBehaviour
     {
         const int side=33;var root=new GameObject("Terrain tile "+key.x+" "+key.y);root.transform.SetParent(transform,false);root.transform.position=new Vector3((float)(key.x*64.0-OriginX),-(float)OriginY,(float)(key.y*64.0-OriginZ));var v=new Vector3[side*side];var uv=new Vector2[v.Length];var triangles=new List<int>();
         for(int z=0;z<side;z++)for(int x=0;x<side;x++){int n=z*side+x;double wx=key.x*64.0+x*2,wz=key.y*64.0+z*2;v[n]=new Vector3(x*2,TerrainHeight(wx,wz)+(float)OriginY,z*2);uv[n]=new Vector2(x*.5f,z*.5f);if(x<side-1&&z<side-1)triangles.AddRange(new[]{n,n+side,n+1,n+1,n+side,n+side+1});}
-        var mesh=new Mesh{name=root.name};mesh.vertices=v;mesh.uv=uv;mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();root.AddComponent<MeshFilter>().sharedMesh=mesh;root.AddComponent<MeshRenderer>().sharedMaterial=groundMaterial;root.AddComponent<MeshCollider>().sharedMesh=mesh;return root;
+        var mesh=new Mesh{name=root.name};mesh.vertices=v;mesh.uv=uv;mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();root.AddComponent<RuntimeMeshOwner>().Bind(mesh);root.AddComponent<MeshFilter>().sharedMesh=mesh;root.AddComponent<MeshRenderer>().sharedMaterial=groundMaterial;root.AddComponent<MeshCollider>().sharedMesh=mesh;return root;
     }
     public float CrossHeight(double s, float cross)
     {
@@ -215,7 +215,7 @@ public sealed class LongRouteStream : MonoBehaviour
             }
         }
         var mesh=new Mesh{name=root.name,indexFormat=IndexFormat.UInt32};mesh.vertices=vertices;mesh.uv=uv;mesh.subMeshCount=2;mesh.SetTriangles(road,0);mesh.SetTriangles(soil,1);mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();
-        root.AddComponent<MeshFilter>().sharedMesh=mesh;root.AddComponent<MeshRenderer>().sharedMaterials=new[]{roadMaterial,groundMaterial};root.AddComponent<MeshCollider>().sharedMesh=mesh;
+        root.AddComponent<RuntimeMeshOwner>().Bind(mesh);root.AddComponent<MeshFilter>().sharedMesh=mesh;root.AddComponent<MeshRenderer>().sharedMaterials=new[]{roadMaterial,groundMaterial};root.AddComponent<MeshCollider>().sharedMesh=mesh;
         var surface=root.AddComponent<ForestDrivingSurface>();surface.cover=ForestDrivingSurface.Cover.PackedSnow;surface.forwardGrip=.55f;surface.lateralGrip=.65f;surface.rollingResistance=.02f;surface.chainsImproveGrip=true;surface.chainedForwardGrip=.95f;surface.chainedLateralGrip=.85f;
         if(treeTemplates!=null&&treeTemplates.Length>0)
         {
@@ -234,7 +234,7 @@ public sealed class LongRouteStream : MonoBehaviour
     }
     static void DisposeChunk(GameObject root)
     {
-        var mesh=root.GetComponent<MeshFilter>().sharedMesh;Destroy(root);Destroy(mesh);
+        var mesh=root.GetComponent<MeshFilter>().sharedMesh;if(root.GetComponent<RuntimeMeshOwner>()==null)Destroy(mesh);Destroy(root);
     }
     public void ShiftOrigin(Vector3 delta)
     {

@@ -7,7 +7,7 @@
     "maximumSpeedMps": 6.069961,
     "spinMps": 7.820215,
     "rutDepthMetres": 0.002950279,
-    "simulationWallMs": 208.17340000000002
+    "simulationWallMs": 228.51180000000002
   },
   "mud": {
     "soft": true,
@@ -16,6 +16,6 @@
     "maximumSpeedMps": 0.2160101,
     "spinMps": 10.9769182,
     "rutDepthMetres": 0.124220081,
-    "simulationWallMs": 302.2815
+    "simulationWallMs": 314.6209
   }
 }

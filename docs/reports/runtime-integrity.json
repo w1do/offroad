@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scene": "MountainPass",
+  "sceneObjects": 7160,
+  "missingScripts": [],
+  "vehicles": [
+    {
+      "name": "Mitsubishi Pajero Sport - supplied 2005 archive",
+      "Ready": true,
+      "axles": 2,
+      "wheels": 4,
+      "error": null,
+      "competingLegacy": false
+    }
+  ],
+  "duplicateBlocks": [],
+  "loadedBlocks": 24
+}

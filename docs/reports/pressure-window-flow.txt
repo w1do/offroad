@@ -1,0 +1,1 @@
+PASS window Apply without Space starts gradual deflation with parking brake; close continues; 1.2 bar reached and service brake released; cancel preserves actual pressure; moving/invalid rejected.

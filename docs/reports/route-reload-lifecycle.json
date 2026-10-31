@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "cycles": 3,
+  "loadedBlocks": 24,
+  "children": 25,
+  "instances": 24,
+  "progressPreserved": true,
+  "rutsPreserved": true,
+  "sameInstances": true
+}

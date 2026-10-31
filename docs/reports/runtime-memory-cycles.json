@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "cycles": 3,
+  "trackedNativeObjects": 436,
+  "survivors": [],
+  "retainedSoilBytes": 0,
+  "retainedTrackBytes": 0,
+  "note": "Checks owned meshes/textures after deferred destruction; intentional run history remains."
+}

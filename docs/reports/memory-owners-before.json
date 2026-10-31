@@ -1,0 +1,189 @@
+{
+  "utc": "2026-10-30T14:00:36.5660926Z",
+  "allocated": 8719373896,
+  "reserved": 17711112192,
+  "managed": 986177536,
+  "groups": [
+    {
+      "type": "Material",
+      "count": 405,
+      "bytes": 1643715
+    },
+    {
+      "type": "Cubemap",
+      "count": 6,
+      "bytes": 538071672
+    },
+    {
+      "type": "Texture2D",
+      "count": 1235,
+      "bytes": 497835454
+    },
+    {
+      "type": "Mesh",
+      "count": 5570,
+      "bytes": 2112470518
+    },
+    {
+      "type": "Texture3D",
+      "count": 4,
+      "bytes": 27848
+    },
+    {
+      "type": "CubemapArray",
+      "count": 2,
+      "bytes": 9360
+    },
+    {
+      "type": "Texture2DArray",
+      "count": 2,
+      "bytes": 9448
+    },
+    {
+      "type": "AudioClip",
+      "count": 23,
+      "bytes": 3542219
+    },
+    {
+      "type": "RenderTexture",
+      "count": 58,
+      "bytes": 236309650
+    }
+  ],
+  "runtimeMud": [
+    {
+      "name": "Matching mud collision",
+      "count": 1220,
+      "unreferenced": 0,
+      "bytes": 402047032
+    },
+    {
+      "name": "Deformable visible mud",
+      "count": 1220,
+      "unreferenced": 0,
+      "bytes": 402047032
+    }
+  ],
+  "largest": [
+    {
+      "name": "spruit_sunrise_4k",
+      "type": "Cubemap",
+      "bytes": 536937440,
+      "path": "Assets/Game/Art/Environment/SpruitSunrise/spruit_sunrise_4k.hdr"
+    },
+    {
+      "name": "_CameraDepthAttachment_1553x686_D32_SFloat_S8_UInt_Tex2D_MSAA4x",
+      "type": "RenderTexture",
+      "bytes": 34092640,
+      "path": ""
+    },
+    {
+      "name": "Main join Background_Tree_Atlas.001",
+      "type": "Mesh",
+      "bytes": 33810104,
+      "path": "Assets/Game/Generated/AuthoredLongForest/Main join Background_Tree_Atlas.001.asset"
+    },
+    {
+      "name": "_MainLightShadowmapTexture_4096x4096_Shadowmap",
+      "type": "RenderTexture",
+      "bytes": 33555582,
+      "path": ""
+    },
+    {
+      "name": "Main join Background_Tree_Atlas.006",
+      "type": "Mesh",
+      "bytes": 24096848,
+      "path": "Assets/Game/Generated/AuthoredLongForest/Main join Background_Tree_Atlas.006.asset"
+    },
+    {
+      "name": "GizmoIconAtlas_pix32",
+      "type": "Texture2D",
+      "bytes": 22392396,
+      "path": ""
+    },
+    {
+      "name": "_CameraTargetAttachment_1553x686_B10G11R11_UFloatPack32_Tex2D_MSAA4x",
+      "type": "RenderTexture",
+      "bytes": 21308354,
+      "path": ""
+    },
+    {
+      "name": "GUIViewHDRRT",
+      "type": "RenderTexture",
+      "bytes": 18238096,
+      "path": ""
+    },
+    {
+      "name": "SceneView RT",
+      "type": "RenderTexture",
+      "bytes": 16922064,
+      "path": ""
+    },
+    {
+      "name": "Universal Light Cookie Atlas_2048x2048_A2B10G10R10_UNormPack32_Tex2D",
+      "type": "RenderTexture",
+      "bytes": 16778410,
+      "path": ""
+    },
+    {
+      "name": "Background_Tree_Atlas.001",
+      "type": "Mesh",
+      "bytes": 13135320,
+      "path": "Assets/Game/Art/Forest/Dirt road scene.fbx"
+    },
+    {
+      "name": "GameView RT",
+      "type": "RenderTexture",
+      "bytes": 12785352,
+      "path": ""
+    },
+    {
+      "name": "ProfilerScreenshotFull",
+      "type": "RenderTexture",
+      "bytes": 12785352,
+      "path": ""
+    },
+    {
+      "name": "Forest_Background_Tree_Atlas_Alpha",
+      "type": "Texture2D",
+      "bytes": 11229491,
+      "path": "Assets/Game/Generated/Forest_Background_Tree_Atlas_Alpha.png"
+    },
+    {
+      "name": "Background_Tree_Atlas_Normal",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/Forest/textures/Background_Tree_Atlas_Normal.png"
+    },
+    {
+      "name": "gravel_floor_04_nor_gl_2k",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/ForestEnhancement/gravel_floor_04/gravel_floor_04_nor_gl_2k.jpg"
+    },
+    {
+      "name": "Aerial_Grass_Normal",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/Forest/textures/Aerial_Grass_Normal.jpeg"
+    },
+    {
+      "name": "forest-puddle_normal1",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/RoadMud/forest-puddle_normal1.jpg"
+    },
+    {
+      "name": "forest-puddle_normal",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/RoadMud/forest-puddle_normal.jpg"
+    },
+    {
+      "name": "forest-puddle_normal2",
+      "type": "Texture2D",
+      "bytes": 11229456,
+      "path": "Assets/Game/Art/RoadMud/forest-puddle_normal2.jpg"
+    }
+  ]
+}

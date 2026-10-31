@@ -31,6 +31,8 @@ public static class ConfigureRealisticPuddles
         int sectionIndex = 0;
         foreach (var section in root.GetComponentsInChildren<MudRoadSection>(true))
         {
+            // Full-width furrow beds replace these basins; do not excavate them again.
+            if(section.profile!=null&&section.profile.fullWidthFurrows)continue;
             var filter = section.GetComponent<MeshFilter>();
             if (filter == null || filter.sharedMesh == null) continue;
             if (root.scene.IsValid() && !EditorSceneManager.IsPreviewScene(root.scene) && PrefabUtility.IsPartOfPrefabInstance(section))

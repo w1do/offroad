@@ -34,7 +34,7 @@
       "radius": 0.39731,
       "requiredHeight": 0.497263372
     },
-    "simulationWallMs": 24.6383,
+    "simulationWallMs": 77.7104,
     "finalPosition": "(0.000, 0.191, 1.545)"
   },
   "previousGrid": {
@@ -47,19 +47,19 @@
     "sampling": 0,
     "stepSeconds": 0.01,
     "completed": true,
-    "travelMetres": 4.5490036,
-    "minimumHubY": 0.496570826,
-    "minimumHubZ": 0.324815631,
+    "travelMetres": 4.549004,
+    "minimumHubY": 0.4965709,
+    "minimumHubZ": 0.324816465,
     "arcContacts": 32,
-    "peakReactionNewtons": 7968.83838,
-    "peakSpeedMps": 5.531909,
-    "peakHeight": 0.199469566,
-    "peakSlipMps": 1.071505,
+    "peakReactionNewtons": 7968.31738,
+    "peakSpeedMps": 5.5319047,
+    "peakHeight": 0.199469745,
+    "peakSlipMps": 1.0715059,
     "initialKineticJoules": 0.000222498449,
-    "peakBodyEnergyJoules": 33032.15,
+    "peakBodyEnergyJoules": 33032.1,
     "initialEstimatedMechanicalEnergyJoules": 1083.90247,
-    "peakEstimatedMechanicalEnergyJoules": 35793.0859,
-    "maximumTyrePenetrationMetres": 0.046282202,
+    "peakEstimatedMechanicalEnergyJoules": 35793.0469,
+    "maximumTyrePenetrationMetres": 0.0462828279,
     "worstPenetration": {
       "w": 3,
       "hub": "(0.7137, 0.3962, -0.2015)",
@@ -70,9 +70,9 @@
       "angle": 0.0,
       "body": "(-0.0004, 0.1607, 1.0278)",
       "radius": 0.39731,
-      "requiredHeight": 0.4424412
+      "requiredHeight": 0.442441821
     },
-    "simulationWallMs": 307.65340000000003,
+    "simulationWallMs": 169.2927,
     "finalPosition": "(0.000, 0.199, 1.549)"
   },
   "coarseGrid": {
@@ -85,19 +85,19 @@
     "sampling": 2,
     "stepSeconds": 0.01,
     "completed": true,
-    "travelMetres": 4.52918243,
+    "travelMetres": 4.529184,
     "minimumHubY": 0.496565,
-    "minimumHubZ": 0.3046739,
+    "minimumHubZ": 0.304675341,
     "arcContacts": 28,
-    "peakReactionNewtons": 8190.841,
-    "peakSpeedMps": 5.51324,
-    "peakHeight": 0.197312415,
-    "peakSlipMps": 1.61531043,
+    "peakReactionNewtons": 8191.10645,
+    "peakSpeedMps": 5.51323462,
+    "peakHeight": 0.197312355,
+    "peakSlipMps": 1.615323,
     "initialKineticJoules": 0.000222498449,
-    "peakBodyEnergyJoules": 32787.082,
+    "peakBodyEnergyJoules": 32787.0234,
     "initialEstimatedMechanicalEnergyJoules": 1083.90247,
-    "peakEstimatedMechanicalEnergyJoules": 35590.5078,
-    "maximumTyrePenetrationMetres": 0.0573281348,
+    "peakEstimatedMechanicalEnergyJoules": 35590.45,
+    "maximumTyrePenetrationMetres": 0.05732858,
     "worstPenetration": {
       "w": 3,
       "hub": "(0.7137, 0.4221, -0.1178)",
@@ -108,9 +108,9 @@
       "angle": 32.5,
       "body": "(-0.0004, 0.1633, 1.1123)",
       "radius": 0.39731,
-      "requiredHeight": 0.479459316
+      "requiredHeight": 0.479459822
     },
-    "simulationWallMs": 127.42920000000001,
+    "simulationWallMs": 111.31450000000001,
     "finalPosition": "(0.000, 0.197, 1.529)"
   },
   "small": {
@@ -148,7 +148,7 @@
       "radius": 0.39731,
       "requiredHeight": 0.4475505
     },
-    "simulationWallMs": 136.4366,
+    "simulationWallMs": 116.83290000000001,
     "finalPosition": "(0.000, 0.202, 1.557)"
   },
   "tall": {
@@ -175,7 +175,7 @@
     "peakEstimatedMechanicalEnergyJoules": 3452.6687,
     "maximumTyrePenetrationMetres": 0.0,
     "worstPenetration": null,
-    "simulationWallMs": 240.11700000000002,
+    "simulationWallMs": 221.9914,
     "finalPosition": "(0.000, 0.118, -2.123)"
   },
   "weak": {
@@ -188,32 +188,32 @@
     "sampling": 1,
     "stepSeconds": 0.01,
     "completed": false,
-    "travelMetres": -0.217475414,
-    "minimumHubY": 0.3968183,
-    "minimumHubZ": -3.03241825,
+    "travelMetres": -0.217477918,
+    "minimumHubY": 0.396818221,
+    "minimumHubZ": -3.03242254,
     "arcContacts": 183,
-    "peakReactionNewtons": 9791.935,
-    "peakSpeedMps": 0.8270835,
-    "peakHeight": 0.159532964,
-    "peakSlipMps": 8.691206,
-    "initialKineticJoules": 4.69063671E-05,
-    "peakBodyEnergyJoules": 247.139481,
-    "initialEstimatedMechanicalEnergyJoules": 1105.29126,
-    "peakEstimatedMechanicalEnergyJoules": 2146.97266,
-    "maximumTyrePenetrationMetres": 0.006752014,
+    "peakReactionNewtons": 9790.561,
+    "peakSpeedMps": 0.8270315,
+    "peakHeight": 0.159532845,
+    "peakSlipMps": 8.689643,
+    "initialKineticJoules": 4.69602019E-05,
+    "peakBodyEnergyJoules": 247.049088,
+    "initialEstimatedMechanicalEnergyJoules": 1105.33521,
+    "peakEstimatedMechanicalEnergyJoules": 2141.04248,
+    "maximumTyrePenetrationMetres": 0.006816745,
     "worstPenetration": {
       "w": 0,
-      "hub": "(-0.7144, 0.4004, -0.2520)",
-      "native": "(-0.7145, 0.4967, 0.0065)",
+      "hub": "(-0.7144, 0.4004, -0.2519)",
+      "native": "(-0.7145, 0.4967, 0.0066)",
       "centre": "(0.0000, 0.0000, 0.0000)",
-      "point": "(-0.7145, 0.1000, 0.0049)",
+      "point": "(-0.7145, 0.1000, 0.0050)",
       "hit": "Actual solid step",
       "angle": 40.625,
-      "body": "(0.0001, 0.1210, -1.7690)",
+      "body": "(0.0001, 0.1210, -1.7689)",
       "radius": 0.39731,
-      "requiredHeight": 0.4071982
+      "requiredHeight": 0.407263219
     },
-    "simulationWallMs": 273.68850000000003,
+    "simulationWallMs": 229.2982,
     "finalPosition": "(0.000, 0.120, -1.818)"
   },
   "nativeCoasting": {
@@ -251,7 +251,7 @@
       "radius": 0.39731,
       "requiredHeight": 0.497309953
     },
-    "simulationWallMs": 23.4127,
+    "simulationWallMs": 77.0176,
     "finalPosition": "(0.000, 0.165, -1.208)"
   },
   "coasting": {
@@ -264,19 +264,19 @@
     "sampling": 1,
     "stepSeconds": 0.01,
     "completed": false,
-    "travelMetres": 0.261270285,
-    "minimumHubY": 0.3965301,
-    "minimumHubZ": -2.56236076,
+    "travelMetres": 0.261075974,
+    "minimumHubY": 0.396551073,
+    "minimumHubZ": -2.56257486,
     "arcContacts": 40,
-    "peakReactionNewtons": 1589.96448,
+    "peakReactionNewtons": 1589.9635,
     "peakSpeedMps": 0.5,
-    "peakHeight": 0.16583699,
-    "peakSlipMps": 0.500071943,
+    "peakHeight": 0.165836513,
+    "peakSlipMps": 0.5000721,
     "initialKineticJoules": 256.250031,
     "peakBodyEnergyJoules": 256.250031,
-    "initialEstimatedMechanicalEnergyJoules": 1361.36853,
-    "peakEstimatedMechanicalEnergyJoules": 1361.36853,
-    "maximumTyrePenetrationMetres": 0.00459557772,
+    "initialEstimatedMechanicalEnergyJoules": 1361.44824,
+    "peakEstimatedMechanicalEnergyJoules": 1361.44824,
+    "maximumTyrePenetrationMetres": 0.004595518,
     "worstPenetration": {
       "w": 0,
       "hub": "(-0.7139, 0.4848, -0.0788)",
@@ -287,9 +287,9 @@
       "angle": 12.1875,
       "body": "(0.0000, 0.1594, -1.5866)",
       "radius": 0.39731,
-      "requiredHeight": 0.489426374
+      "requiredHeight": 0.489426345
     },
-    "simulationWallMs": 185.85330000000002,
+    "simulationWallMs": 124.8011,
     "finalPosition": "(0.000, 0.165, -1.339)"
   },
   "backing": {
@@ -327,7 +327,7 @@
       "radius": 0.39731,
       "requiredHeight": 0.4461626
     },
-    "simulationWallMs": 147.5266,
+    "simulationWallMs": 124.60000000000001,
     "finalPosition": "(0.000, 0.218, -1.873)"
   },
   "deformable": {
@@ -340,19 +340,19 @@
     "sampling": 1,
     "stepSeconds": 0.01,
     "completed": true,
-    "travelMetres": 4.54430866,
-    "minimumHubY": 0.496436447,
-    "minimumHubZ": 0.315454125,
+    "travelMetres": 4.54431057,
+    "minimumHubY": 0.496436536,
+    "minimumHubZ": 0.3154559,
     "arcContacts": 34,
     "peakReactionNewtons": 8033.718,
-    "peakSpeedMps": 5.24351931,
-    "peakHeight": 0.176243722,
-    "peakSlipMps": 5.07544661,
+    "peakSpeedMps": 5.243522,
+    "peakHeight": 0.176243782,
+    "peakSlipMps": 5.07545,
     "initialKineticJoules": 0.000222500224,
-    "peakBodyEnergyJoules": 29303.84,
+    "peakBodyEnergyJoules": 29303.8711,
     "initialEstimatedMechanicalEnergyJoules": 1083.90247,
-    "peakEstimatedMechanicalEnergyJoules": 32576.2246,
-    "maximumTyrePenetrationMetres": 0.0268576741,
+    "peakEstimatedMechanicalEnergyJoules": 32576.2559,
+    "maximumTyrePenetrationMetres": 0.02685839,
     "worstPenetration": {
       "w": 2,
       "hub": "(-0.7117, 0.4464, -0.1362)",
@@ -363,9 +363,9 @@
       "angle": 24.8828125,
       "body": "(0.0030, 0.1593, 1.0961)",
       "radius": 0.39731,
-      "requiredHeight": 0.4732345
+      "requiredHeight": 0.47323516
     },
-    "simulationWallMs": 109.084,
+    "simulationWallMs": 148.2448,
     "finalPosition": "(0.003, 0.176, 1.544)"
   },
   "largerStep": {
@@ -403,7 +403,7 @@
       "radius": 0.39731,
       "requiredHeight": 0.450008631
     },
-    "simulationWallMs": 69.3349,
+    "simulationWallMs": 57.3189,
     "finalPosition": "(-0.001, 0.199, 1.564)"
   },
   "passed": true

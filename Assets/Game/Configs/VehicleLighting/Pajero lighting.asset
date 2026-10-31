@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be89386426bd5a84cbc8eea57cc912ec, type: 3}
+  m_Name: Pajero lighting
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleLightingProfile
+  modeKey: 20
+  lowBeamKey: 25
+  highBeamKey: 34
+  fogLampsKey: 21
+  initialMode: 0
+  switchOnDaylight: 0.35
+  switchOffDaylight: 0.6
+  automaticDelaySeconds: 2
+  automaticFogInBadWeather: 0
+  fogRainThreshold: 0.6
+  fogDensityThreshold: 0.008
+  lowBeam:
+    intensityCandela: 3000
+    rangeMetres: 55
+    outerAngleDegrees: 65
+    innerAngleDegrees: 38
+    color: {r: 1, g: 0.91, b: 0.72, a: 1}
+    shadows: 1
+    cookie: {fileID: 2800000, guid: 23fc7b855a7faad4a90c5868dc0b0824, type: 2}
+  highBeam:
+    intensityCandela: 18000
+    rangeMetres: 110
+    outerAngleDegrees: 32
+    innerAngleDegrees: 18
+    color: {r: 1, g: 0.91, b: 0.72, a: 1}
+    shadows: 1
+    cookie: {fileID: 2800000, guid: ced887862d515f946b84725189aa29dc, type: 2}
+  fog:
+    intensityCandela: 1200
+    rangeMetres: 28
+    outerAngleDegrees: 100
+    innerAngleDegrees: 65
+    color: {r: 1, g: 0.8, b: 0.42, a: 1}
+    shadows: 0
+    cookie: {fileID: 2800000, guid: a3a60f54522601048bb3ae910f378a91, type: 2}

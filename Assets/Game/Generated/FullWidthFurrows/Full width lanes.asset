@@ -27,5 +27,5 @@ MonoBehaviour:
   softGripMultiplier: 0.7
   firmDigMultiplier: 0.25
   softDigMultiplier: 1.7
-  buriedRollingResistance: 0.55
+  buriedRollingResistance: 0.44
   puddleDepthMetres: 0.045

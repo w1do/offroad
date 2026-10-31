@@ -1,0 +1,1 @@
+PASS road radius=0,3928, deflated=0,3432, inflated=0,3928 m; body drop=0,0596 m; meshes=76; changed vertices=15885; max local change=0,0544; grip=1,00

@@ -19,6 +19,12 @@ public sealed class VehicleEquipmentProfile : ScriptableObject
     public float deflationBarPerSecond=.08f,inflationBarPerSecond=.04f;
     public float lowPressureSoftGripMultiplier=1.28f,lowPressureSoilLoadMultiplier=.58f;
     public float lowPressureRollingResistance=.012f;
+    [Header("Loaded tyre shape / prototype calibration")]
+    [Range(0, .2f)] public float roadTyreCompression = .015f;
+    [Range(0, .2f)] public float deflatedTyreCompression = .18f;
+    [Range(0, .3f)] public float deflatedSidewallBulge = .24f;
+    [Range(.4f, .9f)] public float rigidRimRadiusFraction = .78f;
+    [Min(.01f)] public float tyreShapeResponseSeconds = .18f;
     [Header("Selectable drive")]
     public bool switchableDrive=true,defaultFourWheelDrive=false;
     public float maximumDriveSwitchSpeedKmh=35;

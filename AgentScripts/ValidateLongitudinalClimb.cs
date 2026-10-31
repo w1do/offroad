@@ -9,7 +9,7 @@ public static class ValidateLongitudinalClimb
     static object Trial(VehiclePhysics source,float height,bool enabled,float grip,bool coast,float dt,out float travel,bool reverse=false,bool field=false,int sampling=1)
     {
         var scene=SceneManager.CreateScene("Longitudinal wheel envelope "+Guid.NewGuid(),new CreateSceneParameters(LocalPhysicsMode.Physics3D));
-        var physics=scene.GetPhysicsScene();VehiclePhysicsProfile config=null;Mesh mesh=null;SoftGroundProfile soilConfig=null;
+        var physics=scene.GetPhysicsScene();VehiclePhysicsProfile config=null;Mesh mesh=null;SoftGroundProfile soilConfig=null;VehicleEquipmentProfile equipment=null;
         try
         {
             float direction=reverse?-1:1;
@@ -32,7 +32,10 @@ public static class ValidateLongitudinalClimb
             }
             var clone=UnityEngine.Object.Instantiate(source.gameObject,new Vector3(0,.65f,(coast||grip<.2f?-1.6f:-3)*direction),Quaternion.identity);SceneManager.MoveGameObjectToScene(clone,scene);
             var car=clone.GetComponent<VehiclePhysics>();var body=clone.GetComponent<Rigidbody>();body.isKinematic=false;
-            config=UnityEngine.Object.Instantiate(source.profile);config.rutContact.longitudinalSupport=enabled;
+            config=UnityEngine.Object.Instantiate(source.profile);
+            // Isolate envelope geometry from the separately tested loaded tyre radius.
+            if(config.equipment!=null){equipment=UnityEngine.Object.Instantiate(config.equipment);equipment.roadTyreCompression=0;equipment.deflatedTyreCompression=0;config.equipment=equipment;}
+            config.rutContact.longitudinalSupport=enabled;
             config.rutContact.longitudinalSamples=sampling==0?25:9;config.rutContact.adaptiveLongitudinalSampling=sampling==1;
             config.rutContact.arcRefinementSteps=5;config.rutContact.arcRefinementHeightMetres=.01f;
             car.profile=config;car.automaticSimulation=false;car.externalControl=true;clone.GetComponent<VehiclePlayerInput>().enabled=false;
@@ -62,7 +65,7 @@ public static class ValidateLongitudinalClimb
             if(peakSpeed>18||peakHeight>1.5f||body.position.y<-1)throw new Exception("Unstable longitudinal contact: "+Newtonsoft.Json.JsonConvert.SerializeObject(result));
             return result;
         }
-        finally{foreach(var root in scene.GetRootGameObjects())UnityEngine.Object.DestroyImmediate(root);SceneManager.UnloadSceneAsync(scene);if(config!=null)UnityEngine.Object.DestroyImmediate(config);if(mesh!=null)UnityEngine.Object.DestroyImmediate(mesh);if(soilConfig!=null)UnityEngine.Object.DestroyImmediate(soilConfig);}
+        finally{foreach(var root in scene.GetRootGameObjects())UnityEngine.Object.DestroyImmediate(root);SceneManager.UnloadSceneAsync(scene);if(config!=null)UnityEngine.Object.DestroyImmediate(config);if(equipment!=null)UnityEngine.Object.DestroyImmediate(equipment);if(mesh!=null)UnityEngine.Object.DestroyImmediate(mesh);if(soilConfig!=null)UnityEngine.Object.DestroyImmediate(soilConfig);}
     }
     static float BodyEnergy(Rigidbody body,float referenceHeight)
     {

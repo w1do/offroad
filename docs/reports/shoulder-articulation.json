@@ -4,32 +4,32 @@
     "grip": 0.85,
     "slopeDegrees": 20,
     "seconds": 2,
-    "travelXMetres": -0.130586773,
-    "maximumSpeedMps": 0.07819109,
+    "travelXMetres": -0.130403951,
+    "maximumSpeedMps": 0.07826808,
     "shoulderContacts": 0,
-    "finalPosition": "(-0.213, 0.051, -0.002)"
+    "finalPosition": "(-0.211, 0.047, -0.002)"
   },
   "slippery": {
     "grip": 0.04,
     "slopeDegrees": 20,
     "seconds": 2,
-    "travelXMetres": -4.422551,
-    "maximumSpeedMps": 5.11919832,
+    "travelXMetres": -4.421496,
+    "maximumSpeedMps": 5.118368,
     "shoulderContacts": 0,
-    "finalPosition": "(-4.505, -1.511, -0.002)"
+    "finalPosition": "(-4.502, -1.515, -0.002)"
   },
   "articulation": {
-    "diagonalFrames": 268,
+    "diagonalFrames": 267,
     "biggestUnsupportedTreadGapMetres": 0.2936547,
     "finalGrounded": 2,
-    "reportedTyreNormalLoadNewtons": 17714.2637,
+    "reportedTyreNormalLoadNewtons": 17789.6758,
     "antiRollNetForceNewtons": 0.0,
-    "antiRollTorqueNm": 6816.146,
+    "antiRollTorqueNm": 6829.333,
     "weightNewtons": 20110.5,
     "peakSpeedMps": 3.021194,
-    "finalRollDegrees": -3.3086853,
-    "finalPitchDegrees": -1.89318848,
-    "finalPosition": "(-0.001, 0.301, 0.000)"
+    "finalRollDegrees": -2.816742,
+    "finalPitchDegrees": -1.68099976,
+    "finalPosition": "(0.000, 0.290, 0.001)"
   },
   "belly": {
     "groundedAtStart": 0,

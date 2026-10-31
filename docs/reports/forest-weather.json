@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "hour": 12.42026,
+  "rain": 1.0,
+  "clouds": 1.0,
+  "particles": 1526,
+  "budget": 4000,
+  "scene": "Assets/MountainDrive/MountainPass.unity"
+}

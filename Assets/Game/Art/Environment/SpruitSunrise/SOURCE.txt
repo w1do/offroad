@@ -1,0 +1,8 @@
+Spruit Sunrise by Greg Zaal / Poly Haven
+https://polyhaven.com/a/spruit_sunrise
+License: CC0 https://polyhaven.com/license
+Source: https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/spruit_sunrise_4k.hdr
+Original 4K HDR, SHA1: 4f88bb5e0338f0cbab42093c842dea7b34f0d03b
+Imported as an HDR cubemap for sky, ambient lighting and default reflections.
+Exposure 1, rotation 0 degrees; adjustable in SpruitSunriseSky.mat.
+Existing directional light and fog retained.

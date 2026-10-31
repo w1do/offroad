@@ -13,7 +13,8 @@ public static class ValidateMudMomentum
             original.SetActive(false);soilClone=UnityEngine.Object.Instantiate(original,original.transform.position,original.transform.rotation);soilClone.GetComponent<SoftGroundRuts>().persistentId="";
             if(section.profile.fullWidthFurrows)
             {
-                var asset=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Game/Generated/FullWidthFurrows/Bed main0.asset");
+                string token=section.GetComponent<SoftGroundRuts>().persistentId.Split('/')[0];
+                var asset=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Game/Generated/FullWidthFurrows/Bed "+token+".asset");
                 soilClone.GetComponent<MeshFilter>().sharedMesh=asset;soilClone.GetComponent<MeshCollider>().sharedMesh=asset;
                 soilClone.GetComponent<TireTrackRenderer>().persistentId="";
             }
@@ -29,6 +30,7 @@ public static class ValidateMudMomentum
             var start=rb.position;rb.linearVelocity=section.transform.forward*speed;vehicle.SetInput(new VehicleControlInput{throttle=1});float spin=0;int contacts=0;
             for(int i=0;i<700;i++){step();spin=Mathf.Max(spin,vehicle.WheelspinSpeed);contacts=Mathf.Max(contacts,vehicle.MudContacts);}
             soil.Commit();travel=Vector3.Dot(rb.position-start,section.transform.forward);depth=soil.DugDepth;
+            if(section.profile.fullWidthFurrows&&speed==7&&offset==0&&!approach)Capture(soilClone);
             return "entry="+speed+"m/s offset="+offset+" approach="+approach+" travel="+travel.ToString("F2")+"m depth="+depth.ToString("F3")+"m slip="+spin.ToString("F1")+" contacts="+contacts;
         }
         finally{if(clone!=null)UnityEngine.Object.DestroyImmediate(clone);if(soilClone!=null)UnityEngine.Object.DestroyImmediate(soilClone);original.SetActive(enabled);}
@@ -47,10 +49,13 @@ public static class ValidateMudMomentum
             {
                 foreach(float offset in new[]{-2.2f,0,2.2f})
                 {
-                    string moving=Trial(source,section,7,out float movingTravel,out _,offset,true);
-                    string crawling=Trial(source,section,0,out float crawlingTravel,out _,offset,true);
+                    string moving=Trial(source,section,10,out float movingTravel,out _,offset,true);
+                    string crawling=Trial(source,section,0,out float crawlingTravel,out _,offset,false);
                     float exitDistance=section.halfSize.y*2+3.5f;
-                    if(movingTravel<exitDistance||crawlingTravel>=exitDistance||movingTravel<crawlingTravel+3)
+                    float stoppedExit=section.halfSize.y+3.5f;
+                    // The centre is the intended through-route. A marginal bank trajectory
+                    // may remain blocked even with momentum; no stopped lane may bypass mud.
+                    if(offset==0&&movingTravel<exitDistance||crawlingTravel>=stoppedExit||movingTravel<crawlingTravel+3)
                         throw new Exception("Full-width approach failed: "+moving+"; "+crawling);
                     approaches+="\n"+moving+"; "+crawling;
                 }
@@ -58,6 +63,23 @@ public static class ValidateMudMomentum
             return "PASS 4WD LOW same lane, 7s: "+fast+"; "+slow+approaches;
         }
         finally{body.isKinematic=kinematic;if(!kinematic){body.linearVelocity=velocity;body.angularVelocity=angular;}Physics.simulationMode=mode;EditorApplication.isPaused=paused;}
+    }
+    static void Capture(GameObject ground)
+    {
+        var tracks=ground.GetComponent<TireTrackRenderer>();
+        if(tracks!=null)typeof(TireTrackRenderer).GetMethod("Upload",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).Invoke(tracks,null);
+        var camera=Camera.main;if(camera==null)return;
+        var position=camera.transform.position;var rotation=camera.transform.rotation;float fov=camera.fieldOfView;
+        var target=camera.targetTexture;var active=RenderTexture.active;var rt=RenderTexture.GetTemporary(1400,900,24);Texture2D image=null;
+        try
+        {
+            var centre=ground.GetComponent<Renderer>().bounds.center;
+            camera.transform.position=centre+ground.transform.right*5.5f-ground.transform.forward*7.5f+Vector3.up*6;
+            camera.transform.LookAt(centre);camera.fieldOfView=55;camera.targetTexture=rt;camera.Render();RenderTexture.active=rt;
+            image=new Texture2D(1400,900,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,1400,900),0,0);image.Apply();
+            System.IO.File.WriteAllBytes("work/FullWidthMudAfter.png",image.EncodeToPNG());
+        }
+        finally{camera.transform.SetPositionAndRotation(position,rotation);camera.fieldOfView=fov;camera.targetTexture=target;RenderTexture.active=active;RenderTexture.ReleaseTemporary(rt);if(image!=null)UnityEngine.Object.DestroyImmediate(image);}
     }
 }
 

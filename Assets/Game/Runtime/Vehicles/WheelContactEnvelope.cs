@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 // Samples tyre width and lower arc, then places ONE native suspension ray on
 // a real surface point. The body and native wheel shape remain unchanged.
@@ -14,6 +16,9 @@ public sealed class WheelContactEnvelope : MonoBehaviour
     float fraction, angle;
     Vector3 offset;
     Rigidbody body;
+    readonly Dictionary<Collider,bool> usableColliders = new Dictionary<Collider,bool>();
+    PhysicsScene contactScene;
+    int contactLayer;
     readonly RaycastHit[] rayHits = new RaycastHit[32];
     public bool ArcSupported => Mathf.Abs(angle) > .1f;
     public float ArcDegrees => angle;
@@ -55,12 +60,19 @@ public sealed class WheelContactEnvelope : MonoBehaviour
         if(settings.longitudinalSupport)
         {
             float span=wheel.radius*2+wheel.suspensionDistance;
-            int count=gameObject.scene.GetPhysicsScene().Raycast(probe+up*span,-up,rayHits,span*2,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Ignore);
+            int count=contactScene.Raycast(probe+up*span,-up,rayHits,span*2,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Ignore);
             if(count<rayHits.Length)for(int i=0;i<count;i++)
             {
                 var h=rayHits[i];var c=h.collider;
-                if(c.attachedRigidbody==body||c.attachedRigidbody!=null&&!c.attachedRigidbody.isKinematic||c.GetComponent<SoftGroundRuts>()!=null
-                    ||Physics.GetIgnoreLayerCollision(gameObject.layer,c.gameObject.layer)||Physics.GetIgnoreCollision(wheel,c)||Vector3.Dot(h.normal,up)<.15f)continue;
+                // Many arc/width probes hit the same colliders. Reuse only within
+                // this Prepare call, so moving bodies and ignore flags remain live.
+                if(!usableColliders.TryGetValue(c,out bool usable)){
+                    var otherBody=c.attachedRigidbody;
+                    usable=otherBody!=body&&(otherBody==null||otherBody.isKinematic)&&c.GetComponent<SoftGroundRuts>()==null
+                        &&!Physics.GetIgnoreLayerCollision(contactLayer,c.gameObject.layer)&&!Physics.GetIgnoreCollision(wheel,c);
+                    usableColliders.Add(c,usable);
+                }
+                if(!usable||Vector3.Dot(h.normal,up)<.15f)continue;
                 if(Vector3.Dot(h.point-hub,up)>settings.contactSkinMetres)continue;
                 if(!found||Vector3.Dot(h.point-surface.point,up)>0){surface=new SoftGroundSurfaceSample{point=h.point,normal=h.normal};found=true;}
             }
@@ -107,10 +119,11 @@ public sealed class WheelContactEnvelope : MonoBehaviour
         GetWorldPose(out var hub, out _);
         if (!isActiveAndEnabled || settings == null || !settings.enabled || !settings.shoulderSupport&&!settings.longitudinalSupport)
         { Restore(); return hub; }
+        usableColliders.Clear();contactScene=gameObject.scene.GetPhysicsScene();contactLayer=gameObject.layer;
         Vector3 up = transform.up;
         Vector3 across = Quaternion.AngleAxis(wheel.steerAngle, up) * transform.right;
         Vector3 forward=Quaternion.AngleAxis(wheel.steerAngle,up)*transform.forward;
-        bool central = Sample(hub, across, forward, up, width, 0, 0, settings, out float centreHeight, out _);
+        bool central = Sample(hub, across, forward, up, width, 0, 0, settings, out float centreHeight, out var centreSurface);
         float bestHeight = central ? centreHeight : float.NegativeInfinity;
         float bestFraction = 0,bestAngle=0;
         SoftGroundSurfaceSample bestSurface = default;
@@ -124,7 +137,9 @@ public sealed class WheelContactEnvelope : MonoBehaviour
             for(int a=0;a<arcs;a++)
             {
                 float degrees=arcs==1?0:(a-(arcs-1)*.5f)*2/(arcs-1)*settings.maximumLongitudinalArcDegrees;
-                bool usable=Sample(hub,across,forward,up,width,f,degrees,settings,out float height,out var surface);
+                float height;SoftGroundSurfaceSample surface;bool usable;
+                if(f==0&&degrees==0){usable=central;height=centreHeight;surface=centreSurface;}
+                else usable=Sample(hub,across,forward,up,width,f,degrees,settings,out height,out surface);
                 if(usable&&height>bestHeight)
                 {bestHeight=height;bestFraction=f;bestAngle=degrees;bestSurface=surface;}
                 if(a>0&&settings.adaptiveLongitudinalSampling&&PlaneGap(previousSurface,surface,up)>settings.arcRefinementHeightMetres)

@@ -1,0 +1,8 @@
+{
+  "dateUtc": "2026-10-30T13:44:48.6072183Z",
+  "unchangedMilliseconds": 0.0057583333333333341,
+  "forcedUpdateMilliseconds": 3.5610766666666667,
+  "baselineMilliseconds": 44.7533,
+  "meshCount": 76,
+  "note": "Synchronous local microbenchmark; not full-game FPS. Forced update includes mesh uploads, skips disabled renderers."
+}

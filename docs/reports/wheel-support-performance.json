@@ -1,0 +1,45 @@
+{
+  "details": [
+    {
+      "i": 0,
+      "oldHub": "(-592.92110, 51.46172, -29.41349)",
+      "newHub": "(-592.92110, 51.46172, -29.41349)",
+      "oldAngle": 0.0,
+      "newAngle": 0.0,
+      "oldGain": 0.0,
+      "newGain": 0.0
+    },
+    {
+      "i": 1,
+      "oldHub": "(-594.05800, 51.44294, -28.54878)",
+      "newHub": "(-594.05800, 51.44294, -28.54878)",
+      "oldAngle": 0.0,
+      "newAngle": 0.0,
+      "oldGain": 0.0,
+      "newGain": 0.0
+    },
+    {
+      "i": 2,
+      "oldHub": "(-591.28690, 51.82050, -27.25306)",
+      "newHub": "(-591.28690, 51.82050, -27.25306)",
+      "oldAngle": 0.0,
+      "newAngle": 0.0,
+      "oldGain": 0.0,
+      "newGain": 0.0
+    },
+    {
+      "i": 3,
+      "oldHub": "(-592.42220, 51.78434, -26.38739)",
+      "newHub": "(-592.42220, 51.78434, -26.38739)",
+      "oldAngle": 0.0,
+      "newAngle": 0.0,
+      "oldGain": 0.0,
+      "newGain": 0.0
+    }
+  ],
+  "previousFourWheelMilliseconds": 3.65376,
+  "optimizedFourWheelMilliseconds": 3.2123466666666669,
+  "maximumResultDifference": 0.0,
+  "modeDifferences": 0,
+  "note": "Same vehicle pose, same settings, 30 batches; original algorithm from HEAD compared in one Editor callback"
+}

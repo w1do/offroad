@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c273ec3b93f58cd4cadacd8df969196e, type: 3}
+  m_Name: Forest weather
+  m_EditorClassIdentifier: Assembly-CSharp::ForestWeatherProfile
+  startHour: 9
+  dayLengthMinutes: 48
+  advanceClock: 1
+  sunAzimuthDegrees: -38
+  maximumSunElevationDegrees: 48
+  daylightIntensity: 2.1
+  moonlightIntensity: 0.22
+  daylightAmbient: {r: 0.6, g: 0.7, b: 0.79, a: 1}
+  nightAmbient: {r: 0.12, g: 0.16, b: 0.22, a: 1}
+  clearFogDensity: 0.0018
+  rainFogDensity: 0.009
+  weatherSeed: 451
+  automaticWeather: 1
+  weatherPeriodSeconds: 240
+  transitionSeconds: 30
+  initialCloudCover: 0.4
+  initialRain: 0
+  rainProbability: 0.35
+  cloudWind: {x: 0.004, y: 0.001}
+  rainDropsPerSecond: 1800
+  maximumRainParticles: 4000
+  rainRadiusMetres: 22
+  rainHeightMetres: 15
+  rainSpeedMetresPerSecond: 22

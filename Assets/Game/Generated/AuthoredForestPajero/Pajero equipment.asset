@@ -35,6 +35,11 @@ MonoBehaviour:
   lowPressureSoftGripMultiplier: 1.28
   lowPressureSoilLoadMultiplier: 0.58
   lowPressureRollingResistance: 0.012
+  roadTyreCompression: 0.015
+  deflatedTyreCompression: 0.18
+  deflatedSidewallBulge: 0.24
+  rigidRimRadiusFraction: 0.78
+  tyreShapeResponseSeconds: 0.18
   switchableDrive: 1
   defaultFourWheelDrive: 0
   maximumDriveSwitchSpeedKmh: 35

@@ -99,7 +99,7 @@ public static class ConfigureFullWidthFurrows
         road=AssetDatabase.LoadAssetAtPath<MudRoadProfile>(Folder+"/Full width lanes.asset");
         if(road==null){road=UnityEngine.Object.Instantiate(source);AssetDatabase.CreateAsset(road,Folder+"/Full width lanes.asset");}
         road.fullWidthFurrows=true;road.edgeBlendMetres=.55f;road.fullWidthBedDepthMetres=.12f;road.furrowReliefMetres=.075f;road.furrowTileMetres=2.1f;
-        road.firmGripMultiplier=1.1f;road.softGripMultiplier=.70f;road.buriedRollingResistance=.55f;
+        road.firmGripMultiplier=1.1f;road.softGripMultiplier=.70f;road.buriedRollingResistance=.44f;
         ground=AssetDatabase.LoadAssetAtPath<SoftGroundProfile>(Folder+"/Full width soft soil.asset");
         if(ground==null){ground=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<SoftGroundProfile>("Assets/Game/Generated/DeformableMud/Forest soft soil.asset"));AssetDatabase.CreateAsset(ground,Folder+"/Full width soft soil.asset");}
         foreach(var root in scene.GetRootGameObjects())Configure(root);

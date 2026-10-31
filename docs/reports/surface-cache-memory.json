@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "rawSoil": 196608,
+  "packedSoil": 2096,
+  "rawTrack": 262144,
+  "packedTrack": 1253,
+  "packingMs": 1.1757,
+  "exact": true
+}

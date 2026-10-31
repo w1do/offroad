@@ -51,6 +51,7 @@ public sealed class VehiclePhysicsProfile : ScriptableObject
 
     public string displayName="Vehicle";
     public VehicleEquipmentProfile equipment;
+    public VehicleLightingProfile lighting;
     public VehicleWheelEffectsProfile wheelEffects;
     public WheelRutContactSettings rutContact = new WheelRutContactSettings();
 

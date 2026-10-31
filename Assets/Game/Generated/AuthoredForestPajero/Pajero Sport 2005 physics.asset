@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PajeroDriveProfile
   displayName: MITSUBISHI PAJERO SPORT
   equipment: {fileID: 11400000, guid: c873e718c709b3e40844d2d9d8884264, type: 2}
+  lighting: {fileID: 11400000, guid: 01caefd2182500f469cb3c18ee929599, type: 2}
   wheelEffects: {fileID: 11400000, guid: c37ed1f369b722e4f8464076a2f49f18, type: 2}
   rutContact:
     enabled: 1
