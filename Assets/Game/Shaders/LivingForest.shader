@@ -18,6 +18,7 @@ Shader "Game/Living Forest"
         _UseRoughness("Use roughness",Float)=0
         _UseWorldTextures("World mapping",Float)=0
         _WorldTextureScale("UV / meter",Float)=0.4
+        _RainWetness("Rain wetness",Range(0,1))=0
         _TreeSway("Tree bend",Float)=0
         _LocalWindAnchor("Object space wind root",Float)=0
         _LeafFlutter("Leaf flutter",Float)=0
@@ -72,20 +73,21 @@ Shader "Game/Living Forest"
         float4 _BaseMap_ST;half4 _BaseColor,_SnowColor;
         half _Cutoff,_AlphaClip,_Smoothness,_Metallic,_SnowAmount,_SnowScale;
         half _BumpScale,_UseRoughness,_UseWorldTextures,_WorldTextureScale;
-        half _TreeSway,_LeafFlutter,_FoliageLight;
+        half _TreeSway,_LeafFlutter,_FoliageLight,_RainWetness;
         half _LocalWindAnchor;
         half _DynamicSoil;float4 _SoilMaskBounds;
         half _MudBlend,_MudOverlayFade,_MudUseRoughness;float4 _MudHalfSize,_MudHalfSize2;half4 _MudTint;
         half _RoadMaterialBlend;float _RoadTextureScale;float4 _MudUVScale;
         half _RoadLeavesBlend,_RoadWetPatch;
         CBUFFER_END
-        struct A{float4 positionOS:POSITION;float3 normalOS:NORMAL;float4 tangentOS:TANGENT;float2 uv:TEXCOORD0;float2 mudUV:TEXCOORD1;float2 mudLocal:TEXCOORD3;float2 fadeLocal:TEXCOORD4;float4 anchor:TEXCOORD2;};
-        float3 WindPosition(A v){float3 p=TransformObjectToWorld(v.positionOS.xyz);float4 a=v.anchor;if(_LocalWindAnchor>0.5){float3 root=TransformObjectToWorld(float3(a.x,a.z,a.y))+_ForestOriginOffset.xyz;a=float4(root.x,root.z,root.y,1);}return p+ForestWindOffset(p,a,_TreeSway,_LeafFlutter);}
+        struct A{float4 positionOS:POSITION;float3 normalOS:NORMAL;float4 tangentOS:TANGENT;float2 uv:TEXCOORD0;float2 mudUV:TEXCOORD1;float2 mudLocal:TEXCOORD3;float2 fadeLocal:TEXCOORD4;float4 anchor:TEXCOORD2;UNITY_VERTEX_INPUT_INSTANCE_ID};
+        float3 WindPosition(A v){UNITY_SETUP_INSTANCE_ID(v);float3 p=TransformObjectToWorld(v.positionOS.xyz);float4 a=v.anchor;if(_LocalWindAnchor>0.5){float3 root=TransformObjectToWorld(float3(a.x,a.z,a.y))+_ForestOriginOffset.xyz;a=float4(root.x,root.z,root.y,1);}return p+ForestWindOffset(p,a,_TreeSway,_LeafFlutter);}
         ENDHLSL
         Pass
         {
             Name "ForwardLit" Tags{"LightMode"="UniversalForward"} Cull [_Cull]
             HLSLPROGRAM
+            #pragma multi_compile_instancing
             #pragma target 3.0
             #pragma vertex Vert
             #pragma fragment Frag
@@ -98,10 +100,10 @@ Shader "Game/Living Forest"
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
             #pragma multi_compile_fog
-            struct V{float4 positionCS:SV_POSITION;float3 p:TEXCOORD0;half3 n:TEXCOORD1;float2 uv:TEXCOORD2;float4 shadow:TEXCOORD3;half fog:TEXCOORD4;half4 tangent:TEXCOORD5;float4 mud:TEXCOORD6;half3 mudTangent:TEXCOORD7;float2 fade:TEXCOORD8;float2 soilUV:TEXCOORD9;};
+            struct V{float4 positionCS:SV_POSITION;float3 p:TEXCOORD0;half3 n:TEXCOORD1;float2 uv:TEXCOORD2;float4 shadow:TEXCOORD3;half fog:TEXCOORD4;half4 tangent:TEXCOORD5;float4 mud:TEXCOORD6;half3 mudTangent:TEXCOORD7;float2 fade:TEXCOORD8;float2 soilUV:TEXCOORD9;UNITY_VERTEX_INPUT_INSTANCE_ID};
             V Vert(A v)
             {
-                V o;o.p=WindPosition(v);o.positionCS=TransformWorldToHClip(o.p);o.n=TransformObjectToWorldNormal(v.normalOS);
+                V o;UNITY_SETUP_INSTANCE_ID(v);UNITY_TRANSFER_INSTANCE_ID(v,o);o.p=WindPosition(v);o.positionCS=TransformWorldToHClip(o.p);o.n=TransformObjectToWorldNormal(v.normalOS);
                 o.tangent=half4(TransformObjectToWorldDir(v.tangentOS.xyz),v.tangentOS.w*GetOddNegativeScale());
                 o.uv=TRANSFORM_TEX(v.uv,_BaseMap);o.shadow=TransformWorldToShadowCoord(o.p);o.fog=ComputeFogFactor(o.positionCS.z);o.mud=float4(v.mudUV,v.mudLocal);o.mudTangent=TransformObjectToWorldDir(float3(1,0,0));o.fade=v.fadeLocal;o.soilUV=(v.positionOS.xz-_SoilMaskBounds.xy)/max(_SoilMaskBounds.zw,float2(.01,.01));return o;
             }
@@ -109,6 +111,7 @@ Shader "Game/Living Forest"
             float Noise(float2 p){float2 c=floor(p),f=frac(p);f=f*f*(3-2*f);return lerp(lerp(Hash(c),Hash(c+float2(1,0)),f.x),lerp(Hash(c+float2(0,1)),Hash(c+1),f.x),f.y);}
             half4 Frag(V i,FRONT_FACE_TYPE face:FRONT_FACE_SEMANTIC):SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(i);
                 float2 uv=lerp(i.uv,i.p.xz*_WorldTextureScale,_UseWorldTextures);
                 half4 base=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,uv)*_BaseColor;if(_AlphaClip>0.5)clip(base.a-_Cutoff);
                 half3 n=normalize(i.n);half upward=smoothstep(0.25,0.85,n.y);
@@ -134,7 +137,7 @@ Shader "Game/Living Forest"
                     half3 t=_UseWorldTextures>0.5?normalize(float3(1,0,0)-n*n.x):normalize(i.tangent.xyz+half3(0.0001,0,0));
                     half3 b=cross(n,t)*(_UseWorldTextures>0.5?-1:i.tangent.w);n=normalize(t*ts.x+b*ts.y+n*ts.z);
                 }
-                float wet=ForestWetness(i.p)*(1-snow);
+                float wet=max(ForestWetness(i.p),_RainWetness)*(1-snow);
                 if(mud>.001){half3 ts=UnpackNormalScale(SAMPLE_TEXTURE2D(_MudNormal,sampler_MudNormal,i.mud.xy*_MudUVScale.xy),.65);half3 t=normalize(i.mudTangent-n*dot(i.mudTangent,n));half3 b=cross(n,t);n=normalize(lerp(n,t*ts.x+b*ts.y+n*ts.z,mud));}
                 if(_RoadMaterialBlend>.001){half3 wetTS=normalize(lerp(UnpackNormalScale(SAMPLE_TEXTURE2D(_MudNormal,sampler_MudNormal,wetUV),.6),UnpackNormalScale(SAMPLE_TEXTURE2D(_RoadLeavesNormal,sampler_RoadMap,wetUV),.6),leafMix));half3 ts=normalize(lerp(UnpackNormalScale(SAMPLE_TEXTURE2D(_RoadNormal,sampler_RoadMap,roadUV),.6),wetTS,wetPatch));half3 t=normalize(float3(1,0,0)-n*n.x);half3 b=-cross(n,t);n=normalize(lerp(n,t*ts.x+b*ts.y+n*ts.z,_RoadMaterialBlend));}
                 wet=max(wet,mud*.8);
@@ -155,7 +158,7 @@ Shader "Game/Living Forest"
                 float wetRough=lerp(SAMPLE_TEXTURE2D(_WetRoadRoughness,sampler_RoadMap,wetUV).r,SAMPLE_TEXTURE2D(_RoadLeavesRoughness,sampler_RoadMap,wetUV).r,leafMix);
                 smooth=lerp(smooth,1-lerp(SAMPLE_TEXTURE2D(_RoadRoughness,sampler_RoadMap,roadUV).r,wetRough,wetPatch),_RoadMaterialBlend);
                 surface.smoothness=lerp(lerp(smooth,min(0.83,smooth+0.38),wet),0.08,snow);
-                surface.smoothness=lerp(surface.smoothness,clamp(smooth+wetPatch*.12,.08,lerp(.32,.55,wetPatch)),_RoadMaterialBlend);
+                surface.smoothness=lerp(surface.smoothness,clamp(smooth+wetPatch*.12+_RainWetness*.25,.08,lerp(.32,.55,wetPatch)+_RainWetness*.2),_RoadMaterialBlend);
                 surface.normalTS=half3(0,0,1);surface.occlusion=1-track*.12;surface.alpha=1;
                 Light sun=GetMainLight(i.shadow);surface.emission=base.rgb*_FoliageLight*max(0,dot(-n,sun.direction))*sun.color*0.23;
                 InputData data=(InputData)0;data.positionWS=i.p;data.positionCS=i.positionCS;data.normalWS=n;data.viewDirectionWS=GetWorldSpaceNormalizeViewDir(i.p);
@@ -169,6 +172,7 @@ Shader "Game/Living Forest"
         {
             Name "ShadowCaster" Tags{"LightMode"="ShadowCaster"} ZWrite On ZTest LEqual ColorMask 0 Cull [_Cull]
             HLSLPROGRAM
+            #pragma multi_compile_instancing
             #pragma vertex ShadowVert
             #pragma fragment ShadowFrag
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
@@ -197,6 +201,7 @@ Shader "Game/Living Forest"
         {
             Name "DepthOnly" Tags{"LightMode"="DepthOnly"} ZWrite On ColorMask R Cull [_Cull]
             HLSLPROGRAM
+            #pragma multi_compile_instancing
             #pragma vertex DepthVert
             #pragma fragment DepthFrag
             struct D{float4 positionCS:SV_POSITION;float2 uv:TEXCOORD0;};
@@ -207,4 +212,7 @@ Shader "Game/Living Forest"
     }
     Fallback "Hidden/Universal Render Pipeline/FallbackError"
 }
+
+
+
 

@@ -8,6 +8,7 @@ public sealed class WaterVolume : MonoBehaviour
     public Vector3 localFlowMetresPerSecond;
     public float localSurfaceHeight;
     public MeshFilter surfaceMesh;
+    public bool ellipticalBounds;
     Vector3[] vertices;
     int[] triangles;
     readonly Dictionary<Vector2Int, List<int>> surfaceGrid = new Dictionary<Vector2Int, List<int>>();
@@ -39,6 +40,7 @@ public sealed class WaterVolume : MonoBehaviour
         Vector3 p = transform.InverseTransformPoint(world), d = p - bounds.center;
         if (Mathf.Abs(d.x) > bounds.size.x * .5f || Mathf.Abs(d.z) > bounds.size.z * .5f
             || d.y < -bounds.size.y * .5f || p.y > localSurfaceHeight) return 0;
+        if (ellipticalBounds && d.x*d.x/(bounds.size.x*bounds.size.x*.25f) + d.z*d.z/(bounds.size.z*bounds.size.z*.25f) > 1) return 0;
         float surface = localSurfaceHeight;
         if (vertices != null)
         {
@@ -65,3 +67,4 @@ public sealed class WaterVolume : MonoBehaviour
     }
     public Vector3 Flow => transform.TransformDirection(localFlowMetresPerSecond);
 }
+

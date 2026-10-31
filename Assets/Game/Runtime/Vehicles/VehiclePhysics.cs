@@ -201,6 +201,8 @@ public sealed class VehiclePhysics : MonoBehaviour
                 // Select one resistance envelope, rather than stacking two soil forces.
                 if(hits[i].collider.TryGetComponent<MudRoadSection>(out var fullWidth)&&fullWidth.profile!=null&&fullWidth.profile.fullWidthFurrows)
                     soilResistance=Mathf.Max(soilResistance,fullWidth.ResistanceAt(hits[i].point,depth));
+                float groundSpeed=Vector3.ProjectOnPlane(body.GetPointVelocity(hits[i].point),hits[i].normal).magnitude;
+                soilResistance+=Mathf.Max(0,soilModel.viscousResistanceSecondsPerMetre)*groundSpeed;
                 ApplySoilResistance(hits[i],soilResistance,dt);
             }
             float combined=Mathf.SmoothStep(0,1,Mathf.InverseLerp(.15f,1.4f,slip))*Pedal;

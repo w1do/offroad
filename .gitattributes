@@ -6,3 +6,8 @@
 /Models/Road/muddy-road-with-tire-tracks.zip filter=lfs diff=lfs merge=lfs -text
 /Models/Road/tire-tracks-in-mud.zip filter=lfs diff=lfs merge=lfs -text
 /Models/Road/traktore-markak.zip filter=lfs diff=lfs merge=lfs -text
+Models/Forest/low-poly-forest-tree-pack.zip filter=lfs diff=lfs merge=lfs -text
+Models/Forest/seamless-muddy-forest-ground-pbr-texture.zip filter=lfs diff=lfs merge=lfs -text
+Models/Road/bicycle-trail-road-tile-texture.zip filter=lfs diff=lfs merge=lfs -text
+Assets/Game/Art/MuddyForestFloor/muddyleaves_0003_normal.png filter=lfs diff=lfs merge=lfs -text
+Models/Forest/forest-floor-material.zip filter=lfs diff=lfs merge=lfs -text

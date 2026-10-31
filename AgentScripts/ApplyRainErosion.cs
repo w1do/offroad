@@ -1,0 +1,4 @@
+using System;using UnityEngine;using UnityEditor.SceneManagement;
+public static class ApplyRainErosion {
+ public static object Main(){if(Application.isPlaying)throw new Exception("Edit Mode required");int count=0;foreach(var road in UnityEngine.Object.FindObjectsByType<RainSoakedRoad>()){var erosion=road.GetComponent<RainRoadErosion>();if(erosion==null)erosion=road.gameObject.AddComponent<RainRoadErosion>();erosion.runoffPoints=new Vector3[20];for(int i=0;i<20;i++){float z=road.transform.position.z+.25f+i*.5f;float s=Mathf.Sin(z*Mathf.PI/50);erosion.runoffPoints[i]=new Vector3(12*s*s*s+(count%2==0?-1.9f:1.9f),0,z);}count++;}var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);return new{success=true,sections=count};}
+}

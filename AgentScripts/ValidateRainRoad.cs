@@ -1,0 +1,12 @@
+using System;using System.Linq;using System.Reflection;using UnityEngine;using UnityEditor;
+public static class ValidateRainRoad {
+ public static object Main(){
+ if(!Application.isPlaying)throw new Exception("Requires Play Mode");var roads=UnityEngine.Object.FindObjectsByType<RainSoakedRoad>();var weather=roads[0].weather;var field=typeof(ForestDayNightWeather).GetField("rain",BindingFlags.NonPublic|BindingFlags.Instance);float saved=(float)field.GetValue(weather);bool paused=EditorApplication.isPaused;EditorApplication.isPaused=true;
+ try{field.SetValue(weather,0f);foreach(var road in roads)road.Advance(1000);float dryGrip=roads[0].RuntimeSoil.lateralGrip;field.SetValue(weather,.3f);foreach(var road in roads)road.Advance(70);float light=roads[0].Saturation;field.SetValue(weather,1f);foreach(var road in roads)road.Advance(70);float wet=roads[0].Saturation;float wetGrip=roads[0].RuntimeSoil.lateralGrip;int volumes=0;float depth=0;int rays=0;float mismatch=0;
+ foreach(var puddle in UnityEngine.Object.FindObjectsByType<RainRoadPuddle>()){puddle.Refresh();var point=puddle.transform.position+Vector3.down*.03f;if(!WaterVolume.Sample(point,out var water,out var d))throw new Exception("No puddle volume");depth=Mathf.Max(depth,d);volumes++;}
+ foreach(var road in roads){var filter=road.GetComponent<MeshFilter>();var physical=road.GetComponent<MeshCollider>();var probe=new GameObject("Visible road independent collider");probe.transform.SetPositionAndRotation(road.transform.position,road.transform.rotation);probe.transform.localScale=road.transform.lossyScale;var visible=probe.AddComponent<MeshCollider>();visible.sharedMesh=filter.sharedMesh;try{foreach(var vertex in filter.sharedMesh.vertices.Where(v=>v.y<-.002f).Where((v,i)=>i%30==0)){var ray=new Ray(road.transform.TransformPoint(vertex)+Vector3.up,Vector3.down);if(visible.Raycast(ray,out var a,2)&&physical.Raycast(ray,out var b,2)){mismatch=Mathf.Max(mismatch,Mathf.Abs(a.point.y-b.point.y));rays++;}}}finally{UnityEngine.Object.DestroyImmediate(probe);}}
+ if(wet<.99f||light>.1f||wetGrip>=dryGrip*.5f||volumes!=4||rays<10||mismatch>.002f)throw new Exception("Rain road validation failed");
+ return new{success=true,sections=roads.Length,lightRainSaturationAfter70s=light,downpourSaturationAfter70s=wet,dryLateral= dryGrip,wetLateral=wetGrip,basinVolumes=volumes,waterSampleDepth=depth,independentMeshRays=rays,maxVisibleCollisionDifference=mismatch};
+ }finally{field.SetValue(weather,saved);EditorApplication.isPaused=paused;}
+ }
+}

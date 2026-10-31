@@ -1,0 +1,22 @@
+using System;using System.IO;using System.Linq;using UnityEngine;using UnityEditor;using UnityEditor.SceneManagement;using UnityEngine.SceneManagement;
+public static class ConfigureStormRoad {
+ static float Centre(float z){float s=Mathf.Sin(z*Mathf.PI/50);return 12*s*s*s;}
+ public static object Main(){
+ var scene=SceneManager.GetActiveScene();if(Application.isPlaying||scene.isDirty||scene.path!="Assets/MountainDrive/MountainPass.unity")throw new Exception("Expected saved Edit Mode MountainPass");if(GameObject.Find("Rain puddles - road basins")!=null)throw new Exception("Already configured");
+ const string folder="Assets/Game/Generated/StormRoad/";Directory.CreateDirectory(folder);AssetDatabase.Refresh();const string backup="Assets/Game/Scenes/BeforeStormRoad.unity";if(!File.Exists(backup))EditorSceneManager.SaveScene(scene,backup,true);
+ var weather=UnityEngine.Object.FindAnyObjectByType<ForestDayNightWeather>();
+ var road=GameObject.Find("Winding road - persistent wheel ruts");var soils=road.GetComponentsInChildren<SoftGroundRuts>();float[] zs={-34,-14,16,36};var centres=zs.Select(z=>new Vector3(Centre(z),0,z)).ToArray();var rotations=zs.Select(z=>Quaternion.LookRotation(new Vector3(Centre(z+.1f)-Centre(z-.1f),0,.2f))).ToArray();
+ foreach(var soil in soils){var rain=soil.gameObject.AddComponent<RainSoakedRoad>();rain.weather=weather;var filter=soil.GetComponent<MeshFilter>();var mesh=UnityEngine.Object.Instantiate(filter.sharedMesh);var vertices=mesh.vertices;for(int i=0;i<vertices.Length;i++){var world=soil.transform.TransformPoint(vertices[i]);float depression=0;for(int j=0;j<zs.Length;j++){var p=Quaternion.Inverse(rotations[j])*(world-centres[j]);float r2=p.x*p.x/(1.35f*1.35f)+p.z*p.z/9;depression=Mathf.Max(depression,.08f*Mathf.Clamp01(1-r2));}vertices[i]+=soil.transform.InverseTransformVector(Vector3.down*depression);}mesh.vertices=vertices;mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();AssetDatabase.CreateAsset(mesh,folder+soil.name+" basin mesh.asset");filter.sharedMesh=mesh;soil.GetComponent<MeshCollider>().sharedMesh=mesh;}
+ var disk=new Mesh{name="Shallow elliptical puddle disk"};int segments=64;var v=new Vector3[segments+1];var colors=new Color[v.Length];var tris=new int[segments*3];colors[0]=new Color(.08f,0,0,1);for(int i=0;i<segments;i++){float a=i*Mathf.PI*2/segments;v[i+1]=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));colors[i+1]=new Color(0,0,0,1);tris[i*3]=0;tris[i*3+1]=(i+1)%segments+1;tris[i*3+2]=i+1;}disk.vertices=v;disk.colors=colors;disk.triangles=tris;disk.RecalculateNormals();disk.RecalculateBounds();AssetDatabase.CreateAsset(disk,folder+"Puddle disk.asset");
+ var material=new Material(Shader.Find("Game/Forest Puddle"));material.name="Rain road water";material.SetColor("_BaseColor",new Color(.10f,.12f,.08f,.72f));material.SetFloat("_NormalStrength",.08f);material.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Game/Art/RoadScans/bicycle-trail-road-tile-texture/BicycleTrailRoad_basecolor.jpg"));material.SetTexture("_BumpMap",AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Game/Art/Puddles/brown_mud_03_nor_gl_2k.jpg"));AssetDatabase.CreateAsset(material,folder+"Rain road water.mat");
+ var root=new GameObject("Rain puddles - road basins");for(int j=0;j<zs.Length;j++){
+ var go=new GameObject("Road puddle "+j);go.transform.SetParent(root.transform);go.transform.SetPositionAndRotation(centres[j],rotations[j]);var box=go.AddComponent<BoxCollider>();box.isTrigger=true;box.size=new Vector3(2.7f,.5f,6);box.center=Vector3.down*.25f;
+ var surface=new GameObject("Water surface");surface.layer=4;surface.transform.SetParent(go.transform,false);surface.AddComponent<MeshFilter>().sharedMesh=disk;var renderer=surface.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+ var water=go.AddComponent<WaterVolume>();water.surfaceMesh=surface.GetComponent<MeshFilter>();water.dragCoefficient=1.1f;
+ var puddle=go.AddComponent<RainRoadPuddle>();puddle.surface=surface.transform;puddle.road=soils.OrderBy(s=>Mathf.Abs(s.transform.position.z+5-zs[j])).First().GetComponent<RainSoakedRoad>();
+ }
+ Physics.SyncTransforms();AssetDatabase.SaveAssets();EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);return new{success=true,roadSections=soils.Length,puddles=4,basinDepth=.08f,existingRain=true};
+ }
+}
+
+

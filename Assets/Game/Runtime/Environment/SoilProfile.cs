@@ -14,6 +14,8 @@ public sealed class SoilProfile : ScriptableObject
     [Min(1)] public float bearingStrengthPascal = 45000;
     [Min(1)] public float deformationResistancePascal = 90000;
     [Min(0)] public float rollingResistance = .055f;
+    [Tooltip("Additional normal-load resistance per m/s of contact speed (s/m). Zero preserves dry/legacy soil behaviour.")]
+    [Min(0)] public float viscousResistanceSecondsPerMetre;
     [Min(0)] public float rutDepthLimitMetres = .38f;
     [Min(0)] public float recoveryMetresPerSecond;
     [Range(.02f, 2)] public float longitudinalGrip = .18f, lateralGrip = .38f;

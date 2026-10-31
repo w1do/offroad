@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ae32af853e8d84c9e3ae3967764b86, type: 3}
+  m_Name: Forest floor soil
+  m_EditorClassIdentifier: Assembly-CSharp::SoftGroundProfile
+  soil: {fileID: 11400000, guid: 6d2db3db945175b409580cb8495ef5d1, type: 2}
+  displacedSoilFraction: 0.25
+  maximumBermHeightMetres: 0.02
+  maximumColliderCommitsPerStep: 2
+  wheelContactHeightToleranceMetres: 0.006
+  maximumDepthMetres: 0.09
+  diggingMetresPerSecond: 0.075
+  rollingCompactionMetresPerSecond: 0.07
+  settlementDepthMetres: 0.035
+  nominalWheelLoadNewtons: 5000
+  fullDigSlipMetresPerSecond: 9
+  minimumDigSlipMetresPerSecond: 0.6
+  footprintLengthMetres: 0.6
+  edgeTaperMetres: 0.6
+  collisionUpdateSeconds: 0.12

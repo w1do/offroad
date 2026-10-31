@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa19f1a05f752bf4f896a224d8ff1f95, type: 3}
+  m_Name: World palette
+  m_EditorClassIdentifier: Assembly-CSharp::ExplorationPalette
+  forest: {fileID: 2100000, guid: 728fff4f05767ea40ae9e813697f9666, type: 2}
+  road: {fileID: 2100000, guid: 26db539e7e63ba64b98d6eba2c770ee2, type: 2}
+  mud: {fileID: 2100000, guid: 4536a529b2b982847a9f1f646b360b18, type: 2}
+  shore: {fileID: 2100000, guid: 2ba7ffb51146e03468dfe0c8a128b5c3, type: 2}
+  water: {fileID: 2100000, guid: e7ffd33188dca9f4489255c9fe742863, type: 2}
+  lakeWater: {fileID: 2100000, guid: 9854a63ce0cac9549ba8c6e2c18b1b1b, type: 2}
+  bog: {fileID: 2100000, guid: 950276cb2f04cd4418504d34d687c5b9, type: 2}
+  grassDetail: {fileID: 2100000, guid: a6e0e27965222c34287e90af02427807, type: 2}
+  shrubDetail: {fileID: 2100000, guid: a79f9f34919d6f84d902cbef24e34920, type: 2}
+  grassClumps:
+  - {fileID: 4300000, guid: 7b77ef798bb26b64091119fa4d4ed286, type: 2}
+  - {fileID: 4300000, guid: 1719c3f0dd89e244b90a9ec403e56e1b, type: 2}
+  - {fileID: 4300000, guid: c85e58544a9aabd499e832af24268468, type: 2}
+  - {fileID: 4300000, guid: 132107734797b654b8272a14c9cd0ec0, type: 2}
+  - {fileID: 4300000, guid: 8038015b06a82b5469f1663e9b5d2ea1, type: 2}
+  - {fileID: 4300000, guid: 9e7fa956ef07d4945a3ad17c3162e6f3, type: 2}
+  - {fileID: 4300000, guid: bf92845def37ce04c8c83a3ca34df3f5, type: 2}
+  - {fileID: 4300000, guid: 368996bb91afaf44397a96d9a3264c2c, type: 2}
+  - {fileID: 4300000, guid: 90fd9149fbd79114eb069362bc6d8632, type: 2}
+  - {fileID: 4300000, guid: fcfec8a76a19a334c92e2de528c3deb3, type: 2}
+  - {fileID: 4300000, guid: 64de4dab7f06d6c43ad4564976411f06, type: 2}
+  - {fileID: 4300000, guid: 11e732f70fd57654ea3e866cdfbeddd1, type: 2}
+  shrubClumps:
+  - {fileID: 4300000, guid: 935cd553c52ca40478112645693ed58b, type: 2}
+  - {fileID: 4300000, guid: c1b5fdc3eef10c7499015c092b3f4f42, type: 2}
+  - {fileID: 4300000, guid: 2c90b0157755273499ad2c9d917ee861, type: 2}
+  - {fileID: 4300000, guid: 71895c2b20845bc4fb21f20f91dd9b6d, type: 2}
+  - {fileID: 4300000, guid: e25e8f296f97b794fae182af13d281f3, type: 2}
+  - {fileID: 4300000, guid: 76f19c600b516ae43aacf00d66695ff2, type: 2}
+  - {fileID: 4300000, guid: df5fb2028903be041a23f3b2ea732e8d, type: 2}
+  - {fileID: 4300000, guid: 9bc0179e45dae964e97d33c58895ab46, type: 2}
+  - {fileID: 4300000, guid: de7a14d377590ee48ad63d1610de0030, type: 2}
+  - {fileID: 4300000, guid: da7c1c73880327f429a20f96ce9647de, type: 2}
+  - {fileID: 4300000, guid: 7e4209de88b1aa849bd3a52697419eea, type: 2}
+  - {fileID: 4300000, guid: ab4d0be3f29bc2a4f9e7bf9a08b737fe, type: 2}
+  trees:
+  - {fileID: 4136129461404969257, guid: 94f05dd1765eee44ea59e1b155b84145, type: 3}
+  - {fileID: 3596264883012804556, guid: 343bb4b0b9feacb4da1f0c9cbde72985, type: 3}
+  - {fileID: 2869909556657866962, guid: f0386de013bf5424eaad90e2c6c01a40, type: 3}
+  - {fileID: 2522179401380297611, guid: bd0719eb3e7842f4295ad6599e1f4282, type: 3}
+  - {fileID: 3769599094538624675, guid: 197962b8b57a58a49ac6b8714f2feb7d, type: 3}
+  - {fileID: 1641995396020405438, guid: 9028278c413bd7b41b9fdc61ac913402, type: 3}
+  - {fileID: 9024463738050296877, guid: d918ba8f50bbe6747bc9756bdf0dfdd0, type: 3}
+  - {fileID: 1318213137741556745, guid: 0bf5470fce76b1a469b609590eb1387e, type: 3}
+  - {fileID: 2394393524749440395, guid: f1ba08b1bfa0a2e4c921c2b4d1cc7cc8, type: 3}
+  - {fileID: 4175250146786704876, guid: 8d469404a717edf40a7f33a96ccf2a3a, type: 3}
+  - {fileID: 8233760827624084691, guid: 5fef813c1cee71c48a55abab4f946045, type: 3}
+  - {fileID: 3512541544966150544, guid: e1c7e71378b0f124b9340978e4ac9293, type: 3}
+  rocks:
+  - {fileID: 1813885218179181090, guid: 47bf67ef977f0aa48a2b0a7e56365c5e, type: 3}
+  - {fileID: 1328763145896162682, guid: a9381787cd4776a4f88ce7a6681716d1, type: 3}
+  - {fileID: 6007814715053718217, guid: a64fa627273e9a54e84f424f46c5cb89, type: 3}
+  - {fileID: 3413514394164034215, guid: 5e7f0594fce93f145882405a9ee4bb06, type: 3}
+  - {fileID: 5868500806798433798, guid: f48e2e9a9d6fcb34a94ab20dd3136dc4, type: 3}
+  - {fileID: 7354407894979453684, guid: 8516c409b54f9614e9d444fcadd4d848, type: 3}
+  - {fileID: 2870464821049731516, guid: 1550feb87fdff0e46a8c58bc192ade55, type: 3}
+  - {fileID: 5984969336497391306, guid: 215a2a87b36061349a12956e4d2c10fa, type: 3}
+  - {fileID: 3430077905358965419, guid: ef58cecb6eb1e584e8a05268989e0ca7, type: 3}
+  fallenTrees:
+  - {fileID: 5723875974637089694, guid: ba4c8a8da537f754f88b14ede213fcff, type: 3}
+  - {fileID: 8232720945657761492, guid: 2c9c8d0415fb82344abd6b29c0e65d6f, type: 3}
+  - {fileID: 7999207432609625167, guid: b09fe108ab1e5ad48934233e376b3812, type: 3}
+  - {fileID: 6844685165930120538, guid: 91b61b85f936d0f4c96ab0d13d4a1955, type: 3}
+  roadSoil: {fileID: 11400000, guid: 80fd7ecf8a5672545a0fd1af1b3ba6b7, type: 2}
+  weather: {fileID: 11400000, guid: 8190e3710d7bb654aade6b0af9a1497d, type: 2}
+  puddleDisk: {fileID: 4300000, guid: 37b812f3c5fc89049940a740eb826c73, type: 2}
