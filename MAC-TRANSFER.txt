@@ -27,3 +27,13 @@ Assets/_Recovery и файлы IDE в архив не входят. Они ос�
 Remote Git не настроен, коммит остаётся локальным.
 Некоторые исходные ZIP моделей больше 100 MiB; для публикации на
 GitHub отдельно потребуется решить хранение больших файлов.
+
+Дополнительная проверка GUID:
+Дубликатов GUID ассетов нет. В Assets/Settings/DefaultVolumeProfile.asset
+обнаружены 4 ссылки на отсутствующие скрипты: OutlineVolumeComponent,
+TestAnimationCurveVolumeComponent, OasisFogVolumeComponent, TestVolume.
+В Assets/Settings/PC_Renderer.asset не разрешены 7 ссылок старого блока
+probeVolumeResources (отладочные шейдеры/mesh/texture).
+Это существовавшие до очистки ссылки; настройки не изменялись.
+Их влияние требует проверки после импорта в Unity; отсутствие
+предупреждений или ошибок при импорте не подтверждено.
